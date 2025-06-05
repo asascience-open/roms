@@ -111,7 +111,7 @@ MY_CPP_FLAGS ?=
 #  (leave both definitions blank in serial applications):
 
      USE_MPI ?= on
-  USE_OpenMP ?= 
+  USE_OpenMP ?=
 
 #  If distributed-memory, turn on compilation via the script "mpif90".
 #  This is needed in some Linux operating systems. In some systems with
@@ -121,7 +121,7 @@ MY_CPP_FLAGS ?=
 #  In this, case the user need to select the desired compiler below and
 #  turn on both USE_MPI and USE_MPIF90 macros.
 
-  USE_MPIF90 ?= on
+  USE_MPIF90 ?=
 
 #  If applicable, activate 64-bit compilation:
 
@@ -130,7 +130,7 @@ MY_CPP_FLAGS ?=
 #  If applicable, link with NetCDF-4 library. Notice that the NetCDF-4
 #  library needs both the HDF5 and MPI libraries.
 
- USE_NETCDF4 ?= on
+ USE_NETCDF4 ?=
 
 #--------------------------------------------------------------------------
 #  We are going to include a file with all the settings that depend on
@@ -629,8 +629,8 @@ rm_macros:
 print-%:
 	@echo $* = $($*)
 # DO NOT DELETE THIS LINE - used by make depend
-coupler.o: esmf_coupler.h cppdefs.h globaldefs.h eccofs.h mct_coupler.h
-coupler.o: mct_roms_wrf.h tile.h mct_roms_swan.h
+coupler.o: esmf_coupler.h cppdefs.h globaldefs.h mct_coupler.h mct_roms_wrf.h
+coupler.o: tile.h mct_roms_swan.h
 coupler.o: Build_roms/distribute.o Build_roms/mod_coupler.o
 coupler.o: Build_roms/mod_esmf_esm.o Build_roms/mod_forces.o
 coupler.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
@@ -641,27 +641,27 @@ coupler.o: Build_roms/mod_sediment.o Build_roms/mod_stepping.o
 coupler.o: Build_roms/strings.o
 
 esmf_atm.o: esmf_atm_coamps.h esmf_atm_void.h esmf_atm_wrf.h esmf_atm_regcm.h
-esmf_atm.o: cppdefs.h globaldefs.h eccofs.h
+esmf_atm.o: cppdefs.h globaldefs.h
 esmf_atm.o: Build_roms/mod_esmf_esm.o Build_roms/strings.o
 
-esmf_data.o: cppdefs.h globaldefs.h eccofs.h
+esmf_data.o: cppdefs.h globaldefs.h
 esmf_data.o: Build_roms/dateclock.o Build_roms/mod_esmf_esm.o
 esmf_data.o: Build_roms/mod_iounits.o Build_roms/mod_netcdf.o
 esmf_data.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 esmf_data.o: Build_roms/mod_scalars.o Build_roms/mod_strings.o
 esmf_data.o: Build_roms/strings.o
 
-esmf_esm.o: cppdefs.h globaldefs.h eccofs.h
+esmf_esm.o: cppdefs.h globaldefs.h
 esmf_esm.o: Build_roms/coupler.o Build_roms/esmf_atm.o Build_roms/esmf_atm.o
 esmf_esm.o: Build_roms/esmf_atm.o Build_roms/esmf_atm.o Build_roms/esmf_data.o
 esmf_esm.o: Build_roms/esmf_ice.o Build_roms/esmf_roms.o Build_roms/esmf_roms.o
 esmf_esm.o: Build_roms/esmf_wav.o Build_roms/esmf_wav.o
 esmf_esm.o: Build_roms/mod_esmf_esm.o
 
-esmf_ice.o: esmf_ice_cice.h cppdefs.h globaldefs.h eccofs.h esmf_ice_void.h
+esmf_ice.o: esmf_ice_cice.h cppdefs.h globaldefs.h esmf_ice_void.h
 esmf_ice.o: Build_roms/mod_esmf_esm.o
 
-esmf_roms.o: cmeps_roms.h cppdefs.h globaldefs.h eccofs.h esmf_roms.h
+esmf_roms.o: cmeps_roms.h cppdefs.h globaldefs.h esmf_roms.h
 esmf_roms.o: Build_roms/bc_2d.o Build_roms/dateclock.o Build_roms/exchange_2d.o
 esmf_roms.o: Build_roms/get_metadata.o Build_roms/mod_esmf_esm.o
 esmf_roms.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
@@ -675,17 +675,17 @@ esmf_roms.o: Build_roms/roms_kernel.o Build_roms/stdinp_mod.o
 esmf_roms.o: Build_roms/stdout_mod.o Build_roms/strings.o
 esmf_roms.o: Build_roms/yaml_parser.o
 
-esmf_wav.o: esmf_wav_void.h esmf_wav_wam.h cppdefs.h globaldefs.h eccofs.h
+esmf_wav.o: esmf_wav_void.h esmf_wav_wam.h cppdefs.h globaldefs.h
 esmf_wav.o: Build_roms/mod_esmf_esm.o
 
-master.o: esmf_driver.h roms.h mct_driver.h cppdefs.h globaldefs.h eccofs.h
+master.o: esmf_driver.h roms.h mct_driver.h cppdefs.h globaldefs.h
 master.o: Build_roms/coupler.o Build_roms/esmf_esm.o Build_roms/mod_arrays.o
 master.o: Build_roms/mod_coupler.o Build_roms/mod_esmf_esm.o
 master.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 master.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 master.o: Build_roms/roms_kernel.o Build_roms/set_pio.o
 
-mod_esmf_esm.o: cppdefs.h globaldefs.h eccofs.h
+mod_esmf_esm.o: cppdefs.h globaldefs.h
 mod_esmf_esm.o: Build_roms/dateclock.o Build_roms/def_dim.o
 mod_esmf_esm.o: Build_roms/def_var.o Build_roms/distribute.o
 mod_esmf_esm.o: Build_roms/get_metadata.o Build_roms/inp_decode.o
@@ -697,7 +697,7 @@ mod_esmf_esm.o: Build_roms/stdout_mod.o Build_roms/strings.o
 
 propagator.o: propagator_fte.h propagator_so_semi.h propagator_so.h
 propagator.o: propagator_op.h propagator_hso.h propagator_afte.h cppdefs.h
-propagator.o: globaldefs.h eccofs.h propagator_fsv.h propagator_hop.h
+propagator.o: globaldefs.h propagator_fsv.h propagator_hop.h
 propagator.o: Build_roms/close_io.o Build_roms/dotproduct.o
 propagator.o: Build_roms/ini_adjust.o Build_roms/inner2state.o
 propagator.o: Build_roms/mod_coupling.o Build_roms/mod_forces.o
@@ -716,8 +716,7 @@ roms_kernel.o: adsen_roms.h so_roms.h i4dvar_roms.h pert_roms.h array_modes.h
 roms_kernel.o: op_roms.h nl_roms.h correlation.h split_rbl4dvar_roms.h
 roms_kernel.o: obs_sen_rbl4dvar_forecast.h split_r4dvar_roms.h
 roms_kernel.o: obs_sen_r4dvar_analysis.h ad_roms.h obs_sen_rbl4dvar_analysis.h
-roms_kernel.o: cppdefs.h globaldefs.h eccofs.h optobs_roms.h tl_r4dvar_roms.h
-roms_kernel.o: symmetry.h
+roms_kernel.o: cppdefs.h globaldefs.h optobs_roms.h tl_r4dvar_roms.h symmetry.h
 roms_kernel.o: Build_roms/analytical.o Build_roms/array_modes.o
 roms_kernel.o: Build_roms/close_io.o Build_roms/congrad.o Build_roms/convolve.o
 roms_kernel.o: Build_roms/coupler.o Build_roms/dateclock.o Build_roms/def_dai.o
@@ -748,7 +747,7 @@ roms_kernel.o: Build_roms/wrt_gst.o Build_roms/wrt_impulse.o
 roms_kernel.o: Build_roms/wrt_ini.o Build_roms/wrt_rst.o
 roms_kernel.o: Build_roms/zeta_balance.o
 
-i4dvar.o: cppdefs.h globaldefs.h eccofs.h
+i4dvar.o: cppdefs.h globaldefs.h
 i4dvar.o: Build_roms/back_cost.o Build_roms/background_std.o
 i4dvar.o: Build_roms/cgradient.o Build_roms/close_io.o Build_roms/cost_grad.o
 i4dvar.o: Build_roms/def_hessian.o Build_roms/def_ini.o Build_roms/def_mod.o
@@ -765,7 +764,7 @@ i4dvar.o: Build_roms/set_masks.o Build_roms/strings.o Build_roms/sum_grad.o
 i4dvar.o: Build_roms/wrt_evolved.o Build_roms/wrt_ini.o Build_roms/wrt_std.o
 i4dvar.o: Build_roms/zeta_balance.o
 
-r4dvar.o: cppdefs.h globaldefs.h eccofs.h
+r4dvar.o: cppdefs.h globaldefs.h
 r4dvar.o: Build_roms/background_std.o Build_roms/close_io.o
 r4dvar.o: Build_roms/congrad.o Build_roms/convolve.o Build_roms/def_dai.o
 r4dvar.o: Build_roms/def_error.o Build_roms/def_hessian.o
@@ -783,7 +782,7 @@ r4dvar.o: Build_roms/strings.o Build_roms/wrt_hessian.o
 r4dvar.o: Build_roms/wrt_impulse.o Build_roms/wrt_ini.o Build_roms/wrt_std.o
 r4dvar.o: Build_roms/zeta_balance.o
 
-rbl4dvar.o: cppdefs.h globaldefs.h eccofs.h
+rbl4dvar.o: cppdefs.h globaldefs.h
 rbl4dvar.o: Build_roms/background_std.o Build_roms/comp_Jb0.o
 rbl4dvar.o: Build_roms/congrad.o Build_roms/convolve.o Build_roms/def_error.o
 rbl4dvar.o: Build_roms/def_hessian.o Build_roms/def_impulse.o
@@ -812,8 +811,7 @@ analytical.o: ana_nudgcoef.h ana_wwave.h ana_m3obc.h ana_sponge.h ana_btflux.h
 analytical.o: ana_sss.h ana_tclima.h ana_diag.h ana_respiration.h ana_mask.h
 analytical.o: ana_pair.h ana_m2obc.h ana_winds.h ana_biology.h ana_m3clima.h
 analytical.o: ana_smflux.h ana_perturb.h ana_vmix.h ana_dqdsst.h ana_tair.h
-analytical.o: cppdefs.h globaldefs.h eccofs.h ana_srflux.h ana_wtype.h
-analytical.o: ana_sediment.h
+analytical.o: cppdefs.h globaldefs.h ana_srflux.h ana_wtype.h ana_sediment.h
 analytical.o: Build_roms/dateclock.o Build_roms/distribute.o Build_roms/erf.o
 analytical.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 analytical.o: Build_roms/mod_biology.o Build_roms/mod_boundary.o
@@ -827,7 +825,7 @@ analytical.o: Build_roms/mod_sediment.o Build_roms/mod_sources.o
 analytical.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 analytical.o: Build_roms/stats.o
 
-mod_arrays.o: cppdefs.h globaldefs.h eccofs.h
+mod_arrays.o: cppdefs.h globaldefs.h
 mod_arrays.o: Build_roms/mod_average.o Build_roms/mod_bbl.o
 mod_arrays.o: Build_roms/mod_boundary.o Build_roms/mod_clima.o
 mod_arrays.o: Build_roms/mod_coupling.o Build_roms/mod_diags.o
@@ -840,86 +838,86 @@ mod_arrays.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 mod_arrays.o: Build_roms/mod_sedbed.o Build_roms/mod_sources.o
 mod_arrays.o: Build_roms/mod_tides.o Build_roms/set_pio.o
 
-mod_average.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_average.o: set_bounds.h cppdefs.h globaldefs.h
 mod_average.o: Build_roms/destroy.o Build_roms/mod_kinds.o
 mod_average.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 mod_average.o: Build_roms/mod_scalars.o
 
-mod_bbl.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_bbl.o: set_bounds.h cppdefs.h globaldefs.h
 mod_bbl.o: Build_roms/destroy.o Build_roms/mod_kinds.o Build_roms/mod_param.o
 
-mod_behavior.o: oyster_floats_mod.h cppdefs.h globaldefs.h eccofs.h
+mod_behavior.o: oyster_floats_mod.h cppdefs.h globaldefs.h
 mod_behavior.o: Build_roms/mod_param.o
 
-mod_biology.o: red_tide_mod.h npzd_iron_mod.h cppdefs.h globaldefs.h eccofs.h
+mod_biology.o: red_tide_mod.h npzd_iron_mod.h cppdefs.h globaldefs.h
 mod_biology.o: npzd_Franks_mod.h npzd_Powell_mod.h nemuro_mod.h ecosim_mod.h
 mod_biology.o: hypoxia_srm_mod.h fennel_mod.h
 mod_biology.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-mod_boundary.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_boundary.o: set_bounds.h cppdefs.h globaldefs.h
 mod_boundary.o: Build_roms/destroy.o Build_roms/mod_kinds.o
 mod_boundary.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 mod_boundary.o: Build_roms/mod_scalars.o
 
-mod_clima.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_clima.o: set_bounds.h cppdefs.h globaldefs.h
 mod_clima.o: Build_roms/destroy.o Build_roms/mod_kinds.o Build_roms/mod_param.o
 mod_clima.o: Build_roms/mod_scalars.o
 
-mod_coupler.o: cppdefs.h globaldefs.h eccofs.h
+mod_coupler.o: cppdefs.h globaldefs.h
 mod_coupler.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 mod_coupler.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 mod_coupler.o: Build_roms/mod_scalars.o
 
-mod_coupling.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_coupling.o: set_bounds.h cppdefs.h globaldefs.h
 mod_coupling.o: Build_roms/destroy.o Build_roms/mod_kinds.o
 mod_coupling.o: Build_roms/mod_param.o
 
-mod_diags.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_diags.o: set_bounds.h cppdefs.h globaldefs.h
 mod_diags.o: Build_roms/destroy.o Build_roms/mod_biology.o
 mod_diags.o: Build_roms/mod_kinds.o Build_roms/mod_param.o
 
-mod_eclight.o: cppdefs.h globaldefs.h eccofs.h
+mod_eclight.o: cppdefs.h globaldefs.h
 mod_eclight.o: Build_roms/mod_biology.o Build_roms/mod_param.o
 
-mod_eoscoef.o: cppdefs.h globaldefs.h eccofs.h
+mod_eoscoef.o: cppdefs.h globaldefs.h
 mod_eoscoef.o: Build_roms/mod_kinds.o
 
-mod_extract.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_extract.o: set_bounds.h cppdefs.h globaldefs.h
 mod_extract.o: Build_roms/destroy.o Build_roms/mod_kinds.o
 mod_extract.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-mod_floats.o: cppdefs.h globaldefs.h eccofs.h
+mod_floats.o: cppdefs.h globaldefs.h
 mod_floats.o: Build_roms/destroy.o Build_roms/mod_param.o
 mod_floats.o: Build_roms/mod_scalars.o
 
-mod_forces.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_forces.o: set_bounds.h cppdefs.h globaldefs.h
 mod_forces.o: Build_roms/destroy.o Build_roms/mod_biology.o
 mod_forces.o: Build_roms/mod_kinds.o Build_roms/mod_param.o
 mod_forces.o: Build_roms/mod_scalars.o
 
-mod_fourdvar.o: cppdefs.h globaldefs.h eccofs.h
+mod_fourdvar.o: cppdefs.h globaldefs.h
 mod_fourdvar.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 mod_fourdvar.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 mod_fourdvar.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 mod_fourdvar.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-mod_grid.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_grid.o: set_bounds.h cppdefs.h globaldefs.h
 mod_grid.o: Build_roms/destroy.o Build_roms/mod_kinds.o Build_roms/mod_param.o
 mod_grid.o: Build_roms/mod_scalars.o
 
-mod_ice.o: cppdefs.h globaldefs.h eccofs.h
+mod_ice.o: cppdefs.h globaldefs.h
 
-mod_iounits.o: cppdefs.h globaldefs.h eccofs.h
+mod_iounits.o: cppdefs.h globaldefs.h
 mod_iounits.o: Build_roms/mod_kinds.o
 
-mod_kinds.o: cppdefs.h globaldefs.h eccofs.h
+mod_kinds.o: cppdefs.h globaldefs.h
 
-mod_mixing.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_mixing.o: set_bounds.h cppdefs.h globaldefs.h
 mod_mixing.o: Build_roms/destroy.o Build_roms/mod_kinds.o
 mod_mixing.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
 mod_ncparam.o: red_tide_var.h ecosim_var.h npzd_Franks_var.h npzd_iron_var.h
-mod_ncparam.o: nemuro_var.h cppdefs.h globaldefs.h eccofs.h npzd_Powell_var.h
+mod_ncparam.o: nemuro_var.h cppdefs.h globaldefs.h npzd_Powell_var.h
 mod_ncparam.o: sediment_var.h fennel_var.h hypoxia_srm_var.h
 mod_ncparam.o: Build_roms/get_metadata.o Build_roms/mod_biology.o
 mod_ncparam.o: Build_roms/mod_ice.o Build_roms/mod_iounits.o
@@ -927,61 +925,61 @@ mod_ncparam.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 mod_ncparam.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 mod_ncparam.o: Build_roms/strings.o
 
-mod_nesting.o: cppdefs.h globaldefs.h eccofs.h
+mod_nesting.o: cppdefs.h globaldefs.h
 mod_nesting.o: Build_roms/destroy.o Build_roms/mod_boundary.o
 mod_nesting.o: Build_roms/mod_kinds.o Build_roms/mod_param.o
 mod_nesting.o: Build_roms/mod_scalars.o
 
-mod_netcdf.o: cppdefs.h globaldefs.h eccofs.h
+mod_netcdf.o: cppdefs.h globaldefs.h
 mod_netcdf.o: Build_roms/dateclock.o Build_roms/distribute.o
 mod_netcdf.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 mod_netcdf.o: Build_roms/mod_ncparam.o Build_roms/mod_parallel.o
 mod_netcdf.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 mod_netcdf.o: Build_roms/strings.o
 
-mod_ocean.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_ocean.o: set_bounds.h cppdefs.h globaldefs.h
 mod_ocean.o: Build_roms/destroy.o Build_roms/mod_kinds.o Build_roms/mod_param.o
 
-mod_parallel.o: cppdefs.h globaldefs.h eccofs.h
+mod_parallel.o: cppdefs.h globaldefs.h
 mod_parallel.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 mod_parallel.o: Build_roms/mod_scalars.o Build_roms/mod_strings.o
 
-mod_param.o: cppdefs.h globaldefs.h eccofs.h
+mod_param.o: cppdefs.h globaldefs.h
 mod_param.o: Build_roms/mod_kinds.o
 
-mod_pio_netcdf.o: cppdefs.h globaldefs.h eccofs.h
+mod_pio_netcdf.o: cppdefs.h globaldefs.h
 mod_pio_netcdf.o: Build_roms/dateclock.o Build_roms/mod_iounits.o
 mod_pio_netcdf.o: Build_roms/mod_kinds.o Build_roms/mod_ncparam.o
 mod_pio_netcdf.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 mod_pio_netcdf.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 mod_pio_netcdf.o: Build_roms/strings.o
 
-mod_scalars.o: cppdefs.h globaldefs.h eccofs.h
+mod_scalars.o: cppdefs.h globaldefs.h
 mod_scalars.o: Build_roms/mod_kinds.o Build_roms/mod_param.o
 
-mod_sedbed.o: sedbed_mod.h set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_sedbed.o: sedbed_mod.h set_bounds.h cppdefs.h globaldefs.h
 mod_sedbed.o: Build_roms/destroy.o Build_roms/mod_kinds.o
 mod_sedbed.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 mod_sedbed.o: Build_roms/mod_sediment.o
 
-mod_sediment.o: sediment_mod.h cppdefs.h globaldefs.h eccofs.h
+mod_sediment.o: sediment_mod.h cppdefs.h globaldefs.h
 mod_sediment.o: Build_roms/mod_param.o
 
-mod_sources.o: cppdefs.h globaldefs.h eccofs.h
+mod_sources.o: cppdefs.h globaldefs.h
 mod_sources.o: Build_roms/destroy.o Build_roms/mod_iounits.o
 mod_sources.o: Build_roms/mod_kinds.o Build_roms/mod_ncparam.o
 mod_sources.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 mod_sources.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 mod_sources.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-mod_stepping.o: cppdefs.h globaldefs.h eccofs.h
+mod_stepping.o: cppdefs.h globaldefs.h
 
-mod_storage.o: cppdefs.h globaldefs.h eccofs.h
+mod_storage.o: cppdefs.h globaldefs.h
 mod_storage.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-mod_strings.o: cppdefs.h globaldefs.h eccofs.h
+mod_strings.o: cppdefs.h globaldefs.h
 
-mod_tides.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mod_tides.o: set_bounds.h cppdefs.h globaldefs.h
 mod_tides.o: Build_roms/destroy.o Build_roms/mod_iounits.o
 mod_tides.o: Build_roms/mod_kinds.o Build_roms/mod_ncparam.o
 mod_tides.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -990,7 +988,6 @@ mod_tides.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 mod_tides.o: Build_roms/strings.o
 
 bbl.o: mb_bbl.h set_bounds.h tile.h sg_bbl.h ssw_bbl.h cppdefs.h globaldefs.h
-bbl.o: eccofs.h
 bbl.o: Build_roms/bc_2d.o Build_roms/mod_bbl.o Build_roms/mod_forces.o
 bbl.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o Build_roms/mod_ocean.o
 bbl.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
@@ -998,7 +995,7 @@ bbl.o: Build_roms/mod_scalars.o Build_roms/mod_sedbed.o
 bbl.o: Build_roms/mod_sediment.o Build_roms/mod_stepping.o
 bbl.o: Build_roms/mp_exchange.o
 
-bbl_output.o: cppdefs.h globaldefs.h eccofs.h
+bbl_output.o: cppdefs.h globaldefs.h
 bbl_output.o: Build_roms/def_var.o Build_roms/extract_sta.o
 bbl_output.o: Build_roms/mod_average.o Build_roms/mod_bbl.o
 bbl_output.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
@@ -1011,8 +1008,8 @@ bbl_output.o: Build_roms/mod_sediment.o Build_roms/mod_stepping.o
 bbl_output.o: Build_roms/nf_fwrite2d.o Build_roms/nf_fwrite3d.o
 bbl_output.o: Build_roms/omega.o Build_roms/strings.o
 
-biology.o: fennel.h set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
-biology.o: red_tide.h npzd_iron.h ecosim.h hypoxia_srm.h nemuro.h npzd_Franks.h
+biology.o: fennel.h set_bounds.h tile.h cppdefs.h globaldefs.h red_tide.h
+biology.o: npzd_iron.h ecosim.h hypoxia_srm.h nemuro.h npzd_Franks.h
 biology.o: npzd_Powell.h
 biology.o: Build_roms/dateclock.o Build_roms/mod_biology.o
 biology.o: Build_roms/mod_diags.o Build_roms/mod_eclight.o
@@ -1022,21 +1019,21 @@ biology.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 biology.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 biology.o: Build_roms/mod_stepping.o
 
-biology_floats.o: oyster_floats.h cppdefs.h globaldefs.h eccofs.h
+biology_floats.o: oyster_floats.h cppdefs.h globaldefs.h
 biology_floats.o: Build_roms/mod_behavior.o Build_roms/mod_biology.o
 biology_floats.o: Build_roms/mod_floats.o Build_roms/mod_grid.o
 biology_floats.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 biology_floats.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 biology_floats.o: Build_roms/mod_stepping.o
 
-sed_bed.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+sed_bed.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 sed_bed.o: Build_roms/bc_3d.o Build_roms/exchange_2d.o Build_roms/mod_bbl.o
 sed_bed.o: Build_roms/mod_forces.o Build_roms/mod_grid.o Build_roms/mod_ocean.o
 sed_bed.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 sed_bed.o: Build_roms/mod_sedbed.o Build_roms/mod_sediment.o
 sed_bed.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 
-sed_bedload.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+sed_bedload.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 sed_bedload.o: Build_roms/bc_3d.o Build_roms/exchange_2d.o Build_roms/mod_bbl.o
 sed_bedload.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
 sed_bedload.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
@@ -1044,31 +1041,31 @@ sed_bedload.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 sed_bedload.o: Build_roms/mod_sedbed.o Build_roms/mod_sediment.o
 sed_bedload.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 
-sed_fluxes.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+sed_fluxes.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 sed_fluxes.o: Build_roms/mod_bbl.o Build_roms/mod_forces.o
 sed_fluxes.o: Build_roms/mod_grid.o Build_roms/mod_ocean.o
 sed_fluxes.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 sed_fluxes.o: Build_roms/mod_sedbed.o Build_roms/mod_sediment.o
 sed_fluxes.o: Build_roms/mod_stepping.o
 
-sed_settling.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+sed_settling.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 sed_settling.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
 sed_settling.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 sed_settling.o: Build_roms/mod_scalars.o Build_roms/mod_sedbed.o
 sed_settling.o: Build_roms/mod_sediment.o Build_roms/mod_stepping.o
 
-sed_surface.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+sed_surface.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 sed_surface.o: Build_roms/bc_3d.o Build_roms/mod_ocean.o Build_roms/mod_param.o
 sed_surface.o: Build_roms/mod_scalars.o Build_roms/mod_sedbed.o
 sed_surface.o: Build_roms/mod_sediment.o Build_roms/mod_stepping.o
 sed_surface.o: Build_roms/mp_exchange.o
 
-sediment.o: cppdefs.h globaldefs.h eccofs.h
+sediment.o: cppdefs.h globaldefs.h
 sediment.o: Build_roms/sed_bed.o Build_roms/sed_bedload.o
 sediment.o: Build_roms/sed_fluxes.o Build_roms/sed_settling.o
 sediment.o: Build_roms/sed_surface.o
 
-sediment_output.o: cppdefs.h globaldefs.h eccofs.h
+sediment_output.o: cppdefs.h globaldefs.h
 sediment_output.o: Build_roms/def_var.o Build_roms/extract_sta.o
 sediment_output.o: Build_roms/mod_average.o Build_roms/mod_bbl.o
 sediment_output.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
@@ -1081,83 +1078,83 @@ sediment_output.o: Build_roms/mod_sediment.o Build_roms/mod_stepping.o
 sediment_output.o: Build_roms/nf_fwrite2d.o Build_roms/nf_fwrite3d.o
 sediment_output.o: Build_roms/omega.o Build_roms/strings.o
 
-bc_2d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+bc_2d.o: set_bounds.h cppdefs.h globaldefs.h
 bc_2d.o: Build_roms/exchange_2d.o Build_roms/mod_boundary.o
 bc_2d.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o Build_roms/mod_param.o
 bc_2d.o: Build_roms/mod_scalars.o
 
-bc_3d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+bc_3d.o: set_bounds.h cppdefs.h globaldefs.h
 bc_3d.o: Build_roms/exchange_3d.o Build_roms/mod_boundary.o
 bc_3d.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o Build_roms/mod_param.o
 bc_3d.o: Build_roms/mod_scalars.o
 
-bc_4d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+bc_4d.o: set_bounds.h cppdefs.h globaldefs.h
 bc_4d.o: Build_roms/exchange_4d.o Build_roms/mod_boundary.o
 bc_4d.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o Build_roms/mod_param.o
 bc_4d.o: Build_roms/mod_scalars.o
 
-bc_bry2d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+bc_bry2d.o: set_bounds.h cppdefs.h globaldefs.h
 bc_bry2d.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-bc_bry3d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+bc_bry3d.o: set_bounds.h cppdefs.h globaldefs.h
 bc_bry3d.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-bulk_flux.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+bulk_flux.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 bulk_flux.o: Build_roms/exchange_2d.o Build_roms/mod_forces.o
 bulk_flux.o: Build_roms/mod_grid.o Build_roms/mod_ice.o Build_roms/mod_kinds.o
 bulk_flux.o: Build_roms/mod_mixing.o Build_roms/mod_ocean.o
 bulk_flux.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 bulk_flux.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 
-bvf_mix.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+bvf_mix.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 bvf_mix.o: Build_roms/exchange_3d.o Build_roms/mod_mixing.o
 bvf_mix.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 bvf_mix.o: Build_roms/mp_exchange.o
 
-conv_2d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+conv_2d.o: set_bounds.h cppdefs.h globaldefs.h
 conv_2d.o: Build_roms/bc_2d.o Build_roms/mod_param.o Build_roms/mod_scalars.o
 conv_2d.o: Build_roms/mp_exchange.o
 
-conv_3d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+conv_3d.o: set_bounds.h cppdefs.h globaldefs.h
 conv_3d.o: Build_roms/bc_3d.o Build_roms/mod_param.o Build_roms/mod_scalars.o
 conv_3d.o: Build_roms/mp_exchange.o
 
-conv_bry2d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+conv_bry2d.o: set_bounds.h cppdefs.h globaldefs.h
 conv_bry2d.o: Build_roms/bc_bry2d.o Build_roms/mod_param.o
 conv_bry2d.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 
-conv_bry3d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+conv_bry3d.o: set_bounds.h cppdefs.h globaldefs.h
 conv_bry3d.o: Build_roms/bc_bry3d.o Build_roms/mod_param.o
 conv_bry3d.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 
-diag.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+diag.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 diag.o: Build_roms/analytical.o Build_roms/distribute.o Build_roms/mod_grid.o
 diag.o: Build_roms/mod_iounits.o Build_roms/mod_ocean.o
 diag.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 diag.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
-exchange_2d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+exchange_2d.o: set_bounds.h cppdefs.h globaldefs.h
 exchange_2d.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-exchange_2d_xtr.o: set_bounds_xtr.h cppdefs.h globaldefs.h eccofs.h
+exchange_2d_xtr.o: set_bounds_xtr.h cppdefs.h globaldefs.h
 exchange_2d_xtr.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-exchange_3d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+exchange_3d.o: set_bounds.h cppdefs.h globaldefs.h
 exchange_3d.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-exchange_4d.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+exchange_4d.o: set_bounds.h cppdefs.h globaldefs.h
 exchange_4d.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-forcing.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+forcing.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 forcing.o: Build_roms/mod_coupling.o Build_roms/mod_iounits.o
 forcing.o: Build_roms/mod_ocean.o Build_roms/mod_parallel.o
 forcing.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-frc_adjust.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+frc_adjust.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 frc_adjust.o: Build_roms/mod_forces.o Build_roms/mod_ncparam.o
 frc_adjust.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-get_data.o: cppdefs.h globaldefs.h eccofs.h
+get_data.o: cppdefs.h globaldefs.h
 get_data.o: Build_roms/mod_biology.o Build_roms/mod_boundary.o
 get_data.o: Build_roms/mod_clima.o Build_roms/mod_forces.o
 get_data.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
@@ -1166,7 +1163,7 @@ get_data.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 get_data.o: Build_roms/mod_sources.o Build_roms/mod_stepping.o
 get_data.o: Build_roms/strings.o
 
-get_idata.o: cppdefs.h globaldefs.h eccofs.h
+get_idata.o: cppdefs.h globaldefs.h
 get_idata.o: Build_roms/def_tides.o Build_roms/mod_biology.o
 get_idata.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 get_idata.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
@@ -1177,7 +1174,7 @@ get_idata.o: Build_roms/mod_stepping.o Build_roms/mod_tides.o
 get_idata.o: Build_roms/nf_fread3d.o Build_roms/nf_fread4d.o
 get_idata.o: Build_roms/strings.o
 
-gls_corstep.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+gls_corstep.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 gls_corstep.o: Build_roms/exchange_3d.o Build_roms/mod_forces.o
 gls_corstep.o: Build_roms/mod_grid.o Build_roms/mod_mixing.o
 gls_corstep.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
@@ -1185,21 +1182,21 @@ gls_corstep.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 gls_corstep.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 gls_corstep.o: Build_roms/tkebc_im.o
 
-gls_prestep.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+gls_prestep.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 gls_prestep.o: Build_roms/exchange_3d.o Build_roms/mod_grid.o
 gls_prestep.o: Build_roms/mod_mixing.o Build_roms/mod_ocean.o
 gls_prestep.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 gls_prestep.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 gls_prestep.o: Build_roms/tkebc_im.o
 
-hmixing.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+hmixing.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 hmixing.o: Build_roms/exchange_3d.o Build_roms/mod_grid.o
 hmixing.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
 hmixing.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 hmixing.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 hmixing.o: Build_roms/mp_exchange.o
 
-ini_fields.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+ini_fields.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 ini_fields.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 ini_fields.o: Build_roms/mod_coupling.o Build_roms/mod_grid.o
 ini_fields.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
@@ -1209,7 +1206,7 @@ ini_fields.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 ini_fields.o: Build_roms/t3dbc_im.o Build_roms/u2dbc_im.o Build_roms/u3dbc_im.o
 ini_fields.o: Build_roms/v2dbc_im.o Build_roms/v3dbc_im.o Build_roms/zetabc.o
 
-initial.o: cppdefs.h globaldefs.h eccofs.h
+initial.o: cppdefs.h globaldefs.h
 initial.o: Build_roms/analytical.o Build_roms/close_io.o Build_roms/coupler.o
 initial.o: Build_roms/dateclock.o Build_roms/def_ini.o Build_roms/distribute.o
 initial.o: Build_roms/get_state.o Build_roms/get_wetdry.o
@@ -1225,36 +1222,36 @@ initial.o: Build_roms/rho_eos.o Build_roms/set_depth.o Build_roms/set_masks.o
 initial.o: Build_roms/set_massflux.o Build_roms/stiffness.o
 initial.o: Build_roms/strings.o Build_roms/wetdry.o Build_roms/wpoints.o
 
-interp_floats.o: cppdefs.h globaldefs.h eccofs.h
+interp_floats.o: cppdefs.h globaldefs.h
 interp_floats.o: Build_roms/mod_floats.o Build_roms/mod_ncparam.o
 interp_floats.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-lmd_bkpp.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+lmd_bkpp.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 lmd_bkpp.o: Build_roms/bc_2d.o Build_roms/mod_forces.o Build_roms/mod_grid.o
 lmd_bkpp.o: Build_roms/mod_mixing.o Build_roms/mod_ocean.o
 lmd_bkpp.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 lmd_bkpp.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 lmd_bkpp.o: Build_roms/shapiro.o
 
-lmd_skpp.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+lmd_skpp.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 lmd_skpp.o: Build_roms/bc_2d.o Build_roms/mod_forces.o Build_roms/mod_grid.o
 lmd_skpp.o: Build_roms/mod_mixing.o Build_roms/mod_ocean.o
 lmd_skpp.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 lmd_skpp.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 lmd_skpp.o: Build_roms/shapiro.o
 
-lmd_swfrac.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+lmd_swfrac.o: set_bounds.h cppdefs.h globaldefs.h
 lmd_swfrac.o: Build_roms/mod_mixing.o Build_roms/mod_param.o
 lmd_swfrac.o: Build_roms/mod_scalars.o
 
-lmd_vmix.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+lmd_vmix.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 lmd_vmix.o: Build_roms/bc_3d.o Build_roms/lmd_bkpp.o Build_roms/lmd_skpp.o
 lmd_vmix.o: Build_roms/mod_grid.o Build_roms/mod_mixing.o
 lmd_vmix.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 lmd_vmix.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 lmd_vmix.o: Build_roms/mp_exchange.o
 
-main2d.o: cppdefs.h globaldefs.h eccofs.h
+main2d.o: cppdefs.h globaldefs.h
 main2d.o: Build_roms/coupler.o Build_roms/dateclock.o Build_roms/diag.o
 main2d.o: Build_roms/dotproduct.o Build_roms/equilibrium_tide.o
 main2d.o: Build_roms/forcing.o Build_roms/frc_adjust.o Build_roms/ini_fields.o
@@ -1266,7 +1263,7 @@ main2d.o: Build_roms/obc_adjust.o Build_roms/set_avg.o Build_roms/set_tides.o
 main2d.o: Build_roms/set_vbc.o Build_roms/step2d.o Build_roms/step_floats.o
 main2d.o: Build_roms/strings.o
 
-main3d.o: cppdefs.h globaldefs.h eccofs.h
+main3d.o: cppdefs.h globaldefs.h
 main3d.o: Build_roms/analytical.o Build_roms/bbl.o Build_roms/biology.o
 main3d.o: Build_roms/bulk_flux.o Build_roms/bvf_mix.o Build_roms/coupler.o
 main3d.o: Build_roms/dateclock.o Build_roms/diag.o Build_roms/dotproduct.o
@@ -1285,11 +1282,11 @@ main3d.o: Build_roms/set_tides.o Build_roms/set_vbc.o Build_roms/set_zeta.o
 main3d.o: Build_roms/step2d.o Build_roms/step3d_t.o Build_roms/step3d_uv.o
 main3d.o: Build_roms/step_floats.o Build_roms/strings.o Build_roms/wvelocity.o
 
-mpdata_adiff.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mpdata_adiff.o: set_bounds.h cppdefs.h globaldefs.h
 mpdata_adiff.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 mpdata_adiff.o: Build_roms/mod_scalars.o
 
-my25_corstep.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+my25_corstep.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 my25_corstep.o: Build_roms/exchange_3d.o Build_roms/mod_forces.o
 my25_corstep.o: Build_roms/mod_grid.o Build_roms/mod_mixing.o
 my25_corstep.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
@@ -1297,14 +1294,14 @@ my25_corstep.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 my25_corstep.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 my25_corstep.o: Build_roms/tkebc_im.o
 
-my25_prestep.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+my25_prestep.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 my25_prestep.o: Build_roms/exchange_3d.o Build_roms/mod_grid.o
 my25_prestep.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
 my25_prestep.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 my25_prestep.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 my25_prestep.o: Build_roms/mp_exchange.o Build_roms/tkebc_im.o
 
-nesting.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+nesting.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 nesting.o: Build_roms/distribute.o Build_roms/exchange_2d.o
 nesting.o: Build_roms/exchange_3d.o Build_roms/mod_clima.o
 nesting.o: Build_roms/mod_coupling.o Build_roms/mod_forces.o
@@ -1315,24 +1312,24 @@ nesting.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 nesting.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 nesting.o: Build_roms/set_depth.o Build_roms/strings.o
 
-obc_adjust.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+obc_adjust.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 obc_adjust.o: Build_roms/mod_boundary.o Build_roms/mod_ncparam.o
 obc_adjust.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-obc_volcons.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+obc_volcons.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 obc_volcons.o: Build_roms/distribute.o Build_roms/mod_grid.o
 obc_volcons.o: Build_roms/mod_ocean.o Build_roms/mod_parallel.o
 obc_volcons.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 obc_volcons.o: Build_roms/mp_exchange.o
 
-omega.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+omega.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 omega.o: Build_roms/bc_3d.o Build_roms/exchange_3d.o Build_roms/mod_grid.o
 omega.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o Build_roms/mod_param.o
 omega.o: Build_roms/mod_scalars.o Build_roms/mod_sedbed.o
 omega.o: Build_roms/mod_sources.o Build_roms/mod_stepping.o
 omega.o: Build_roms/mp_exchange.o
 
-output.o: cppdefs.h globaldefs.h eccofs.h
+output.o: cppdefs.h globaldefs.h
 output.o: Build_roms/close_io.o Build_roms/def_avg.o Build_roms/def_diags.o
 output.o: Build_roms/def_extract.o Build_roms/def_floats.o Build_roms/def_his.o
 output.o: Build_roms/def_quick.o Build_roms/def_rst.o Build_roms/def_station.o
@@ -1345,12 +1342,12 @@ output.o: Build_roms/wrt_diags.o Build_roms/wrt_extract.o
 output.o: Build_roms/wrt_floats.o Build_roms/wrt_his.o Build_roms/wrt_quick.o
 output.o: Build_roms/wrt_rst.o Build_roms/wrt_station.o Build_roms/wrt_tides.o
 
-post_initial.o: cppdefs.h globaldefs.h eccofs.h
+post_initial.o: cppdefs.h globaldefs.h
 post_initial.o: Build_roms/ini_fields.o Build_roms/mod_parallel.o
 post_initial.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 post_initial.o: Build_roms/set_depth.o
 
-pre_step3d.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+pre_step3d.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 pre_step3d.o: Build_roms/exchange_3d.o Build_roms/mod_diags.o
 pre_step3d.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
 pre_step3d.o: Build_roms/mod_mixing.o Build_roms/mod_ocean.o
@@ -1359,12 +1356,12 @@ pre_step3d.o: Build_roms/mod_sources.o Build_roms/mod_stepping.o
 pre_step3d.o: Build_roms/mp_exchange.o Build_roms/t3dbc_im.o
 
 prsgrd.o: prsgrd32.h set_bounds.h tile.h prsgrd31.h prsgrd42.h prsgrd40.h
-prsgrd.o: prsgrd44.h cppdefs.h globaldefs.h eccofs.h
+prsgrd.o: prsgrd44.h cppdefs.h globaldefs.h
 prsgrd.o: Build_roms/mod_diags.o Build_roms/mod_forces.o Build_roms/mod_grid.o
 prsgrd.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 prsgrd.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
-rho_eos.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+rho_eos.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 rho_eos.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 rho_eos.o: Build_roms/mod_coupling.o Build_roms/mod_eoscoef.o
 rho_eos.o: Build_roms/mod_grid.o Build_roms/mod_mixing.o Build_roms/mod_ocean.o
@@ -1372,7 +1369,7 @@ rho_eos.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 rho_eos.o: Build_roms/mod_sediment.o Build_roms/mod_stepping.o
 rho_eos.o: Build_roms/mp_exchange.o
 
-rhs3d.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+rhs3d.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 rhs3d.o: Build_roms/mod_clima.o Build_roms/mod_coupling.o
 rhs3d.o: Build_roms/mod_diags.o Build_roms/mod_forces.o Build_roms/mod_grid.o
 rhs3d.o: Build_roms/mod_mixing.o Build_roms/mod_ocean.o Build_roms/mod_param.o
@@ -1380,7 +1377,7 @@ rhs3d.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 rhs3d.o: Build_roms/pre_step3d.o Build_roms/prsgrd.o Build_roms/t3dmix.o
 rhs3d.o: Build_roms/t3dmix.o Build_roms/uv3dmix.o Build_roms/uv3dmix.o
 
-set_avg.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+set_avg.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 set_avg.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 set_avg.o: Build_roms/mod_average.o Build_roms/mod_bbl.o
 set_avg.o: Build_roms/mod_coupling.o Build_roms/mod_forces.o
@@ -1392,7 +1389,7 @@ set_avg.o: Build_roms/mod_stepping.o Build_roms/mod_tides.o
 set_avg.o: Build_roms/mp_exchange.o Build_roms/set_masks.o
 set_avg.o: Build_roms/uv_rotate.o Build_roms/vorticity.o
 
-set_data.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+set_data.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 set_data.o: Build_roms/analytical.o Build_roms/distribute.o
 set_data.o: Build_roms/exchange_2d.o Build_roms/mod_biology.o
 set_data.o: Build_roms/mod_boundary.o Build_roms/mod_clima.o
@@ -1403,7 +1400,7 @@ set_data.o: Build_roms/mod_scalars.o Build_roms/mod_sources.o
 set_data.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 set_data.o: Build_roms/set_2dfld.o Build_roms/set_3dfld.o Build_roms/strings.o
 
-set_depth.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+set_depth.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 set_depth.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 set_depth.o: Build_roms/mod_boundary.o Build_roms/mod_coupling.o
 set_depth.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o
@@ -1411,13 +1408,13 @@ set_depth.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 set_depth.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 set_depth.o: Build_roms/mp_exchange.o
 
-set_massflux.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+set_massflux.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 set_massflux.o: Build_roms/exchange_3d.o Build_roms/mod_coupling.o
 set_massflux.o: Build_roms/mod_grid.o Build_roms/mod_ocean.o
 set_massflux.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 set_massflux.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 
-set_tides.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+set_tides.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 set_tides.o: Build_roms/distribute.o Build_roms/exchange_2d.o
 set_tides.o: Build_roms/mod_boundary.o Build_roms/mod_clima.o
 set_tides.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o
@@ -1425,18 +1422,18 @@ set_tides.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 set_tides.o: Build_roms/mod_stepping.o Build_roms/mod_tides.o
 set_tides.o: Build_roms/mp_exchange.o
 
-set_vbc.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+set_vbc.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 set_vbc.o: Build_roms/bc_2d.o Build_roms/mod_forces.o Build_roms/mod_grid.o
 set_vbc.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 set_vbc.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 set_vbc.o: Build_roms/mp_exchange.o
 
-set_zeta.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+set_zeta.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 set_zeta.o: Build_roms/exchange_2d.o Build_roms/mod_coupling.o
 set_zeta.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 set_zeta.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 
-step2d.o: step2d_LF_AM3.h set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+step2d.o: step2d_LF_AM3.h set_bounds.h tile.h cppdefs.h globaldefs.h
 step2d.o: Build_roms/exchange_2d.o Build_roms/mod_clima.o
 step2d.o: Build_roms/mod_coupling.o Build_roms/mod_diags.o
 step2d.o: Build_roms/mod_forces.o Build_roms/mod_grid.o Build_roms/mod_mixing.o
@@ -1447,7 +1444,7 @@ step2d.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 step2d.o: Build_roms/obc_volcons.o Build_roms/u2dbc_im.o Build_roms/v2dbc_im.o
 step2d.o: Build_roms/wetdry.o Build_roms/zetabc.o
 
-step3d_t.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+step3d_t.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 step3d_t.o: Build_roms/exchange_3d.o Build_roms/mod_clima.o
 step3d_t.o: Build_roms/mod_diags.o Build_roms/mod_grid.o
 step3d_t.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
@@ -1458,7 +1455,7 @@ step3d_t.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 step3d_t.o: Build_roms/mpdata_adiff.o Build_roms/nesting.o
 step3d_t.o: Build_roms/t3dbc_im.o
 
-step3d_uv.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+step3d_uv.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 step3d_uv.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 step3d_uv.o: Build_roms/mod_coupling.o Build_roms/mod_diags.o
 step3d_uv.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
@@ -1468,7 +1465,7 @@ step3d_uv.o: Build_roms/mod_scalars.o Build_roms/mod_sources.o
 step3d_uv.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 step3d_uv.o: Build_roms/u3dbc_im.o Build_roms/v3dbc_im.o
 
-step_floats.o: cppdefs.h globaldefs.h eccofs.h
+step_floats.o: cppdefs.h globaldefs.h
 step_floats.o: Build_roms/biology_floats.o Build_roms/distribute.o
 step_floats.o: Build_roms/interp_floats.o Build_roms/mod_floats.o
 step_floats.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
@@ -1477,7 +1474,7 @@ step_floats.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 step_floats.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 step_floats.o: Build_roms/vwalk_floats.o
 
-t3dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+t3dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 t3dbc_im.o: Build_roms/mod_boundary.o Build_roms/mod_clima.o
 t3dbc_im.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o
 t3dbc_im.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
@@ -1485,53 +1482,52 @@ t3dbc_im.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
 t3dmix.o: t3dmix4_geo.h set_bounds.h tile.h t3dmix2_geo.h t3dmix2_s.h
 t3dmix.o: t3dmix4_iso.h t3dmix4_s.h t3dmix2_iso.h cppdefs.h globaldefs.h
-t3dmix.o: eccofs.h
 t3dmix.o: Build_roms/mod_clima.o Build_roms/mod_diags.o Build_roms/mod_grid.o
 t3dmix.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
 t3dmix.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 t3dmix.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
-tkebc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+tkebc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 tkebc_im.o: Build_roms/mod_boundary.o Build_roms/mod_grid.o
 tkebc_im.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
 tkebc_im.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 tkebc_im.o: Build_roms/mod_stepping.o
 
-u2dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+u2dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 u2dbc_im.o: Build_roms/mod_boundary.o Build_roms/mod_clima.o
 u2dbc_im.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
 u2dbc_im.o: Build_roms/mod_ncparam.o Build_roms/mod_nesting.o
 u2dbc_im.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 u2dbc_im.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
-u3dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+u3dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 u3dbc_im.o: Build_roms/mod_boundary.o Build_roms/mod_clima.o
 u3dbc_im.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o
 u3dbc_im.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 u3dbc_im.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
 uv3dmix.o: uv3dmix2_s.h set_bounds.h tile.h uv3dmix2_geo.h uv3dmix4_s.h
-uv3dmix.o: uv3dmix4_geo.h cppdefs.h globaldefs.h eccofs.h
+uv3dmix.o: uv3dmix4_geo.h cppdefs.h globaldefs.h
 uv3dmix.o: Build_roms/mod_coupling.o Build_roms/mod_diags.o
 uv3dmix.o: Build_roms/mod_grid.o Build_roms/mod_mixing.o
 uv3dmix.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 uv3dmix.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 uv3dmix.o: Build_roms/mod_stepping.o
 
-v2dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+v2dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 v2dbc_im.o: Build_roms/mod_boundary.o Build_roms/mod_clima.o
 v2dbc_im.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
 v2dbc_im.o: Build_roms/mod_ncparam.o Build_roms/mod_nesting.o
 v2dbc_im.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 v2dbc_im.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
-v3dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+v3dbc_im.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 v3dbc_im.o: Build_roms/mod_boundary.o Build_roms/mod_clima.o
 v3dbc_im.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o
 v3dbc_im.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 v3dbc_im.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
-vwalk_floats.o: cppdefs.h globaldefs.h eccofs.h
+vwalk_floats.o: cppdefs.h globaldefs.h
 vwalk_floats.o: Build_roms/distribute.o Build_roms/interp_floats.o
 vwalk_floats.o: Build_roms/mod_floats.o Build_roms/mod_grid.o
 vwalk_floats.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
@@ -1539,44 +1535,44 @@ vwalk_floats.o: Build_roms/mod_ocean.o Build_roms/mod_parallel.o
 vwalk_floats.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 vwalk_floats.o: Build_roms/mod_stepping.o Build_roms/nrutil.o
 
-wetdry.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+wetdry.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 wetdry.o: Build_roms/exchange_2d.o Build_roms/mod_coupling.o
 wetdry.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 wetdry.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 wetdry.o: Build_roms/mod_sources.o Build_roms/mp_exchange.o
 
-wvelocity.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+wvelocity.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 wvelocity.o: Build_roms/bc_3d.o Build_roms/exchange_2d.o
 wvelocity.o: Build_roms/mod_coupling.o Build_roms/mod_grid.o
 wvelocity.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 wvelocity.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 wvelocity.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 
-zetabc.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+zetabc.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 zetabc.o: Build_roms/mod_boundary.o Build_roms/mod_grid.o
 zetabc.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 zetabc.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 zetabc.o: Build_roms/mod_stepping.o
 
-ADfromTL.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+ADfromTL.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 ADfromTL.o: Build_roms/mod_clima.o Build_roms/mod_grid.o
 ADfromTL.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 ADfromTL.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 ADfromTL.o: Build_roms/mod_stepping.o
 
-array_modes.o: cppdefs.h globaldefs.h eccofs.h
+array_modes.o: cppdefs.h globaldefs.h
 array_modes.o: Build_roms/distribute.o Build_roms/mod_fourdvar.o
 array_modes.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 array_modes.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-back_cost.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+back_cost.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 back_cost.o: Build_roms/distribute.o Build_roms/mod_boundary.o
 back_cost.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
 back_cost.o: Build_roms/mod_grid.o Build_roms/mod_ncparam.o
 back_cost.o: Build_roms/mod_ocean.o Build_roms/mod_parallel.o
 back_cost.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-background_std.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+background_std.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 background_std.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 background_std.o: Build_roms/mod_coupling.o Build_roms/mod_grid.o
 background_std.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
@@ -1585,7 +1581,7 @@ background_std.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 background_std.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 background_std.o: Build_roms/set_depth.o
 
-cgradient.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+cgradient.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 cgradient.o: Build_roms/distribute.o Build_roms/lapack_mod.o
 cgradient.o: Build_roms/mod_boundary.o Build_roms/mod_coupling.o
 cgradient.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
@@ -1601,29 +1597,29 @@ cgradient.o: Build_roms/state_dotprod.o Build_roms/state_initialize.o
 cgradient.o: Build_roms/state_read.o Build_roms/state_scale.o
 cgradient.o: Build_roms/strings.o Build_roms/wrt_hessian.o
 
-check_multifile.o: cppdefs.h globaldefs.h eccofs.h
+check_multifile.o: cppdefs.h globaldefs.h
 check_multifile.o: Build_roms/dateclock.o Build_roms/mod_iounits.o
 check_multifile.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 check_multifile.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 check_multifile.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 check_multifile.o: Build_roms/strings.o
 
-checkadj.o: cppdefs.h globaldefs.h eccofs.h
+checkadj.o: cppdefs.h globaldefs.h
 checkadj.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 checkadj.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 checkadj.o: Build_roms/mod_scalars.o Build_roms/mod_strings.o
 checkadj.o: Build_roms/strings.o
 
-checkdefs.o: cppdefs.h globaldefs.h eccofs.h
+checkdefs.o: cppdefs.h globaldefs.h
 checkdefs.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 checkdefs.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 checkdefs.o: Build_roms/mod_strings.o Build_roms/strings.o
 
-checkerror.o: cppdefs.h globaldefs.h eccofs.h
+checkerror.o: cppdefs.h globaldefs.h
 checkerror.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 checkerror.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-checkvars.o: cppdefs.h globaldefs.h eccofs.h
+checkvars.o: cppdefs.h globaldefs.h
 checkvars.o: Build_roms/mod_biology.o Build_roms/mod_ice.o
 checkvars.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 checkvars.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -1631,14 +1627,14 @@ checkvars.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 checkvars.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 checkvars.o: Build_roms/strings.o
 
-close_io.o: cppdefs.h globaldefs.h eccofs.h
+close_io.o: cppdefs.h globaldefs.h
 close_io.o: Build_roms/dateclock.o Build_roms/mod_iounits.o
 close_io.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 close_io.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 close_io.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 close_io.o: Build_roms/strings.o
 
-comp_Jb0.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+comp_Jb0.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 comp_Jb0.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 comp_Jb0.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
 comp_Jb0.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1647,7 +1643,7 @@ comp_Jb0.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 comp_Jb0.o: Build_roms/mod_scalars.o Build_roms/state_dotprod.o
 comp_Jb0.o: Build_roms/strings.o
 
-congrad.o: cppdefs.h globaldefs.h eccofs.h
+congrad.o: cppdefs.h globaldefs.h
 congrad.o: Build_roms/distribute.o Build_roms/lapack_mod.o
 congrad.o: Build_roms/mod_fourdvar.o Build_roms/mod_iounits.o
 congrad.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
@@ -1655,7 +1651,7 @@ congrad.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 congrad.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 congrad.o: Build_roms/strings.o
 
-convolve.o: cppdefs.h globaldefs.h eccofs.h
+convolve.o: cppdefs.h globaldefs.h
 convolve.o: Build_roms/comp_Jb0.o Build_roms/get_state.o
 convolve.o: Build_roms/ini_adjust.o Build_roms/mod_boundary.o
 convolve.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
@@ -1665,16 +1661,16 @@ convolve.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 convolve.o: Build_roms/strings.o Build_roms/sum_grad.o Build_roms/time_corr.o
 convolve.o: Build_roms/wrt_hessian.o Build_roms/wrt_ini.o
 
-cost_grad.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+cost_grad.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 cost_grad.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 cost_grad.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 cost_grad.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-dateclock.o: cppdefs.h globaldefs.h eccofs.h
+dateclock.o: cppdefs.h globaldefs.h
 dateclock.o: Build_roms/mod_kinds.o Build_roms/mod_param.o
 dateclock.o: Build_roms/mod_scalars.o Build_roms/round.o
 
-def_avg.o: cppdefs.h globaldefs.h eccofs.h
+def_avg.o: cppdefs.h globaldefs.h
 def_avg.o: Build_roms/bbl_output.o Build_roms/def_dim.o Build_roms/def_info.o
 def_avg.o: Build_roms/def_var.o Build_roms/mod_biology.o
 def_avg.o: Build_roms/mod_fourdvar.o Build_roms/mod_iounits.o
@@ -1684,7 +1680,7 @@ def_avg.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 def_avg.o: Build_roms/mod_sediment.o Build_roms/sediment_output.o
 def_avg.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_dai.o: cppdefs.h globaldefs.h eccofs.h
+def_dai.o: cppdefs.h globaldefs.h
 def_dai.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_dai.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_dai.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1693,7 +1689,7 @@ def_dai.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_dai.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_dai.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_diags.o: cppdefs.h globaldefs.h eccofs.h
+def_diags.o: cppdefs.h globaldefs.h
 def_diags.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_diags.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_diags.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1702,12 +1698,12 @@ def_diags.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_diags.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_diags.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_dim.o: cppdefs.h globaldefs.h eccofs.h
+def_dim.o: cppdefs.h globaldefs.h
 def_dim.o: Build_roms/distribute.o Build_roms/mod_iounits.o
 def_dim.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 def_dim.o: Build_roms/mod_param.o Build_roms/mod_scalars.o Build_roms/strings.o
 
-def_error.o: cppdefs.h globaldefs.h eccofs.h
+def_error.o: cppdefs.h globaldefs.h
 def_error.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_error.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_error.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1716,7 +1712,7 @@ def_error.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_error.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_error.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_extract.o: cppdefs.h globaldefs.h eccofs.h
+def_extract.o: cppdefs.h globaldefs.h
 def_extract.o: Build_roms/bbl_output.o Build_roms/def_dim.o
 def_extract.o: Build_roms/def_info.o Build_roms/def_var.o
 def_extract.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
@@ -1727,7 +1723,7 @@ def_extract.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_extract.o: Build_roms/sediment_output.o Build_roms/strings.o
 def_extract.o: Build_roms/wrt_info.o
 
-def_floats.o: cppdefs.h globaldefs.h eccofs.h
+def_floats.o: cppdefs.h globaldefs.h
 def_floats.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_floats.o: Build_roms/mod_biology.o Build_roms/mod_floats.o
 def_floats.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
@@ -1737,7 +1733,7 @@ def_floats.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_floats.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_floats.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_gst.o: cppdefs.h globaldefs.h eccofs.h
+def_gst.o: cppdefs.h globaldefs.h
 def_gst.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_gst.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 def_gst.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -1745,7 +1741,7 @@ def_gst.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_gst.o: Build_roms/mod_scalars.o Build_roms/mod_storage.o
 def_gst.o: Build_roms/strings.o
 
-def_hessian.o: cppdefs.h globaldefs.h eccofs.h
+def_hessian.o: cppdefs.h globaldefs.h
 def_hessian.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_hessian.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_hessian.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1754,7 +1750,7 @@ def_hessian.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_hessian.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_hessian.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_his.o: cppdefs.h globaldefs.h eccofs.h
+def_his.o: cppdefs.h globaldefs.h
 def_his.o: Build_roms/bbl_output.o Build_roms/def_dim.o Build_roms/def_info.o
 def_his.o: Build_roms/def_var.o Build_roms/mod_biology.o
 def_his.o: Build_roms/mod_fourdvar.o Build_roms/mod_iounits.o
@@ -1764,7 +1760,7 @@ def_his.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 def_his.o: Build_roms/mod_sediment.o Build_roms/sediment_output.o
 def_his.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_impulse.o: cppdefs.h globaldefs.h eccofs.h
+def_impulse.o: cppdefs.h globaldefs.h
 def_impulse.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_impulse.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_impulse.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1778,8 +1774,8 @@ def_info.o: hypoxia_srm_def_pio.h npzd_iron_def_pio.h sediment_def.h
 def_info.o: fennel_def.h npzd_Powell_def_pio.h hypoxia_srm_def.h
 def_info.o: oyster_floats_def_pio.h npzd_Franks_def.h npzd_iron_def.h
 def_info.o: nemuro_def_pio.h npzd_Franks_def_pio.h cppdefs.h globaldefs.h
-def_info.o: eccofs.h red_tide_def.h oyster_floats_def.h npzd_Powell_def.h
-def_info.o: ecosim_def.h fennel_def_pio.h nemuro_def.h
+def_info.o: red_tide_def.h oyster_floats_def.h npzd_Powell_def.h ecosim_def.h
+def_info.o: fennel_def_pio.h nemuro_def.h
 def_info.o: Build_roms/def_dim.o Build_roms/def_var.o Build_roms/distribute.o
 def_info.o: Build_roms/lbc.o Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
 def_info.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1788,14 +1784,14 @@ def_info.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_info.o: Build_roms/mod_scalars.o Build_roms/mod_strings.o
 def_info.o: Build_roms/strings.o Build_roms/tadv.o
 
-def_ini.o: cppdefs.h globaldefs.h eccofs.h
+def_ini.o: cppdefs.h globaldefs.h
 def_ini.o: Build_roms/def_dim.o Build_roms/def_var.o Build_roms/mod_iounits.o
 def_ini.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 def_ini.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 def_ini.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 def_ini.o: Build_roms/strings.o
 
-def_lanczos.o: cppdefs.h globaldefs.h eccofs.h
+def_lanczos.o: cppdefs.h globaldefs.h
 def_lanczos.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_lanczos.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_lanczos.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1804,7 +1800,7 @@ def_lanczos.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_lanczos.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_lanczos.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_mod.o: cppdefs.h globaldefs.h eccofs.h
+def_mod.o: cppdefs.h globaldefs.h
 def_mod.o: Build_roms/dateclock.o Build_roms/def_dim.o Build_roms/def_var.o
 def_mod.o: Build_roms/distribute.o Build_roms/mod_fourdvar.o
 def_mod.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1813,7 +1809,7 @@ def_mod.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_mod.o: Build_roms/mod_scalars.o Build_roms/mod_strings.o
 def_mod.o: Build_roms/strings.o
 
-def_norm.o: cppdefs.h globaldefs.h eccofs.h
+def_norm.o: cppdefs.h globaldefs.h
 def_norm.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_norm.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_norm.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1822,7 +1818,7 @@ def_norm.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_norm.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_norm.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_quick.o: cppdefs.h globaldefs.h eccofs.h
+def_quick.o: cppdefs.h globaldefs.h
 def_quick.o: Build_roms/bbl_output.o Build_roms/def_dim.o Build_roms/def_info.o
 def_quick.o: Build_roms/def_var.o Build_roms/mod_biology.o
 def_quick.o: Build_roms/mod_fourdvar.o Build_roms/mod_iounits.o
@@ -1832,7 +1828,7 @@ def_quick.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 def_quick.o: Build_roms/mod_sediment.o Build_roms/sediment_output.o
 def_quick.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_rst.o: cppdefs.h globaldefs.h eccofs.h
+def_rst.o: cppdefs.h globaldefs.h
 def_rst.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_rst.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_rst.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1841,7 +1837,7 @@ def_rst.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_rst.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_rst.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_state.o: cppdefs.h globaldefs.h eccofs.h
+def_state.o: cppdefs.h globaldefs.h
 def_state.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_state.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_state.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1850,7 +1846,7 @@ def_state.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_state.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_state.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_station.o: cppdefs.h globaldefs.h eccofs.h
+def_station.o: cppdefs.h globaldefs.h
 def_station.o: Build_roms/bbl_output.o Build_roms/def_dim.o
 def_station.o: Build_roms/def_info.o Build_roms/def_var.o
 def_station.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
@@ -1861,7 +1857,7 @@ def_station.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_station.o: Build_roms/sediment_output.o Build_roms/strings.o
 def_station.o: Build_roms/wrt_info.o
 
-def_std.o: cppdefs.h globaldefs.h eccofs.h
+def_std.o: cppdefs.h globaldefs.h
 def_std.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_std.o: Build_roms/mod_biology.o Build_roms/mod_fourdvar.o
 def_std.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1870,7 +1866,7 @@ def_std.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_std.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 def_std.o: Build_roms/strings.o Build_roms/wrt_info.o
 
-def_tides.o: cppdefs.h globaldefs.h eccofs.h
+def_tides.o: cppdefs.h globaldefs.h
 def_tides.o: Build_roms/def_dim.o Build_roms/def_info.o Build_roms/def_var.o
 def_tides.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 def_tides.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -1878,73 +1874,73 @@ def_tides.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 def_tides.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 def_tides.o: Build_roms/mod_tides.o Build_roms/strings.o Build_roms/wrt_info.o
 
-def_var.o: cppdefs.h globaldefs.h eccofs.h
+def_var.o: cppdefs.h globaldefs.h
 def_var.o: Build_roms/distribute.o Build_roms/mod_iounits.o
 def_var.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 def_var.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 def_var.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-destroy.o: cppdefs.h globaldefs.h eccofs.h
+destroy.o: cppdefs.h globaldefs.h
 destroy.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 destroy.o: Build_roms/mod_parallel.o
 
-distribute.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+distribute.o: set_bounds.h cppdefs.h globaldefs.h
 distribute.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 distribute.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 distribute.o: Build_roms/mp_exchange.o
 
-dotproduct.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+dotproduct.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 dotproduct.o: Build_roms/distribute.o Build_roms/mod_fourdvar.o
 dotproduct.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 dotproduct.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 dotproduct.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 dotproduct.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
-edit_multifile.o: cppdefs.h globaldefs.h eccofs.h
+edit_multifile.o: cppdefs.h globaldefs.h
 edit_multifile.o: Build_roms/close_io.o Build_roms/mod_iounits.o
 edit_multifile.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 edit_multifile.o: Build_roms/mod_scalars.o
 
-equilibrium_tide.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+equilibrium_tide.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 equilibrium_tide.o: Build_roms/dateclock.o Build_roms/exchange_2d.o
 equilibrium_tide.o: Build_roms/mod_grid.o Build_roms/mod_kinds.o
 equilibrium_tide.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 equilibrium_tide.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 
-erf.o: cppdefs.h globaldefs.h eccofs.h
+erf.o: cppdefs.h globaldefs.h
 erf.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o Build_roms/mod_param.o
 erf.o: Build_roms/mod_scalars.o
 
-extract_field.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+extract_field.o: set_bounds.h cppdefs.h globaldefs.h
 extract_field.o: Build_roms/distribute.o Build_roms/interpolate.o
 extract_field.o: Build_roms/mod_extract.o Build_roms/mod_grid.o
 extract_field.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 extract_field.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 extract_field.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-extract_obs.o: cppdefs.h globaldefs.h eccofs.h
+extract_obs.o: cppdefs.h globaldefs.h
 extract_obs.o: Build_roms/mod_fourdvar.o Build_roms/mod_kinds.o
 extract_obs.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 
-extract_sta.o: cppdefs.h globaldefs.h eccofs.h
+extract_sta.o: cppdefs.h globaldefs.h
 extract_sta.o: Build_roms/distribute.o Build_roms/mod_grid.o
 extract_sta.o: Build_roms/mod_ncparam.o Build_roms/mod_parallel.o
 extract_sta.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-frc_iau.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+frc_iau.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 frc_iau.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
 frc_iau.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 frc_iau.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
-frc_weak.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+frc_weak.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 frc_weak.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
 frc_weak.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 frc_weak.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 
-gasdev.o: cppdefs.h globaldefs.h eccofs.h
+gasdev.o: cppdefs.h globaldefs.h
 gasdev.o: Build_roms/mod_kinds.o Build_roms/nrutil.o
 
-get_2dfld.o: cppdefs.h globaldefs.h eccofs.h
+get_2dfld.o: cppdefs.h globaldefs.h
 get_2dfld.o: Build_roms/dateclock.o Build_roms/inquiry.o
 get_2dfld.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 get_2dfld.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -1952,7 +1948,7 @@ get_2dfld.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_2dfld.o: Build_roms/mod_scalars.o Build_roms/nf_fread2d.o
 get_2dfld.o: Build_roms/nf_fread3d.o Build_roms/strings.o
 
-get_2dfldr.o: cppdefs.h globaldefs.h eccofs.h
+get_2dfldr.o: cppdefs.h globaldefs.h
 get_2dfldr.o: Build_roms/dateclock.o Build_roms/inquiry.o
 get_2dfldr.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 get_2dfldr.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -1960,7 +1956,7 @@ get_2dfldr.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_2dfldr.o: Build_roms/mod_scalars.o Build_roms/nf_fread2d.o
 get_2dfldr.o: Build_roms/nf_fread3d.o Build_roms/strings.o
 
-get_3dfld.o: cppdefs.h globaldefs.h eccofs.h
+get_3dfld.o: cppdefs.h globaldefs.h
 get_3dfld.o: Build_roms/dateclock.o Build_roms/inquiry.o
 get_3dfld.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 get_3dfld.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -1968,7 +1964,7 @@ get_3dfld.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_3dfld.o: Build_roms/mod_scalars.o Build_roms/nf_fread3d.o
 get_3dfld.o: Build_roms/strings.o
 
-get_3dfldr.o: cppdefs.h globaldefs.h eccofs.h
+get_3dfldr.o: cppdefs.h globaldefs.h
 get_3dfldr.o: Build_roms/dateclock.o Build_roms/inquiry.o
 get_3dfldr.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 get_3dfldr.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -1976,12 +1972,12 @@ get_3dfldr.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_3dfldr.o: Build_roms/mod_scalars.o Build_roms/nf_fread3d.o
 get_3dfldr.o: Build_roms/strings.o
 
-get_bounds.o: cppdefs.h globaldefs.h eccofs.h
+get_bounds.o: cppdefs.h globaldefs.h
 get_bounds.o: Build_roms/mod_ncparam.o Build_roms/mod_nesting.o
 get_bounds.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 get_bounds.o: Build_roms/mod_scalars.o
 
-get_cycle.o: cppdefs.h globaldefs.h eccofs.h
+get_cycle.o: cppdefs.h globaldefs.h
 get_cycle.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 get_cycle.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 get_cycle.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
@@ -1989,7 +1985,7 @@ get_cycle.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
 get_env.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 
-get_extract.o: cppdefs.h globaldefs.h eccofs.h
+get_extract.o: cppdefs.h globaldefs.h
 get_extract.o: Build_roms/exchange_2d_xtr.o Build_roms/extract_field.o
 get_extract.o: Build_roms/mod_extract.o Build_roms/mod_grid.o
 get_extract.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -1998,7 +1994,7 @@ get_extract.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_extract.o: Build_roms/mp_exchange.o Build_roms/nf_fread2d_xtr.o
 get_extract.o: Build_roms/strings.o
 
-get_grid.o: cppdefs.h globaldefs.h eccofs.h
+get_grid.o: cppdefs.h globaldefs.h
 get_grid.o: Build_roms/exchange_2d.o Build_roms/mod_grid.o
 get_grid.o: Build_roms/mod_iounits.o Build_roms/mod_mixing.o
 get_grid.o: Build_roms/mod_ncparam.o Build_roms/mod_nesting.o
@@ -2007,38 +2003,38 @@ get_grid.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_grid.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 get_grid.o: Build_roms/nesting.o Build_roms/nf_fread2d.o Build_roms/strings.o
 
-get_gst.o: cppdefs.h globaldefs.h eccofs.h
+get_gst.o: cppdefs.h globaldefs.h
 get_gst.o: Build_roms/distribute.o Build_roms/mod_iounits.o
 get_gst.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 get_gst.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 get_gst.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 get_gst.o: Build_roms/mod_storage.o Build_roms/strings.o
 
-get_hash.o: cppdefs.h globaldefs.h eccofs.h
+get_hash.o: cppdefs.h globaldefs.h
 get_hash.o: Build_roms/distribute.o Build_roms/mod_iounits.o
 get_hash.o: Build_roms/mod_kinds.o Build_roms/mod_scalars.o
 get_hash.o: Build_roms/strings.o
 
-get_metadata.o: cppdefs.h globaldefs.h eccofs.h
+get_metadata.o: cppdefs.h globaldefs.h
 get_metadata.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 get_metadata.o: Build_roms/mod_parallel.o Build_roms/mod_scalars.o
 get_metadata.o: Build_roms/strings.o Build_roms/yaml_parser.o
 
-get_ngfld.o: cppdefs.h globaldefs.h eccofs.h
+get_ngfld.o: cppdefs.h globaldefs.h
 get_ngfld.o: Build_roms/dateclock.o Build_roms/get_hash.o Build_roms/inquiry.o
 get_ngfld.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 get_ngfld.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 get_ngfld.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_ngfld.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-get_ngfldr.o: cppdefs.h globaldefs.h eccofs.h
+get_ngfldr.o: cppdefs.h globaldefs.h
 get_ngfldr.o: Build_roms/dateclock.o Build_roms/get_hash.o Build_roms/inquiry.o
 get_ngfldr.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 get_ngfldr.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 get_ngfldr.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_ngfldr.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-get_nudgcoef.o: cppdefs.h globaldefs.h eccofs.h
+get_nudgcoef.o: cppdefs.h globaldefs.h
 get_nudgcoef.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 get_nudgcoef.o: Build_roms/mod_clima.o Build_roms/mod_grid.o
 get_nudgcoef.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -2048,7 +2044,7 @@ get_nudgcoef.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 get_nudgcoef.o: Build_roms/nf_fread2d.o Build_roms/nf_fread3d.o
 get_nudgcoef.o: Build_roms/strings.o
 
-get_state.o: cppdefs.h globaldefs.h eccofs.h
+get_state.o: cppdefs.h globaldefs.h
 get_state.o: Build_roms/checkvars.o Build_roms/dateclock.o Build_roms/lbc.o
 get_state.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 get_state.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
@@ -2064,13 +2060,13 @@ get_state.o: Build_roms/nf_fread2d_bry.o Build_roms/nf_fread3d.o
 get_state.o: Build_roms/nf_fread3d_bry.o Build_roms/nf_fread4d.o
 get_state.o: Build_roms/strings.o
 
-get_varcoords.o: cppdefs.h globaldefs.h eccofs.h
+get_varcoords.o: cppdefs.h globaldefs.h
 get_varcoords.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 get_varcoords.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 get_varcoords.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_varcoords.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-get_wetdry.o: cppdefs.h globaldefs.h eccofs.h
+get_wetdry.o: cppdefs.h globaldefs.h
 get_wetdry.o: Build_roms/exchange_2d.o Build_roms/mod_grid.o
 get_wetdry.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 get_wetdry.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -2078,13 +2074,13 @@ get_wetdry.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 get_wetdry.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 get_wetdry.o: Build_roms/nf_fread2d.o Build_roms/strings.o
 
-grid_coords.o: cppdefs.h globaldefs.h eccofs.h
+grid_coords.o: cppdefs.h globaldefs.h
 grid_coords.o: Build_roms/distribute.o Build_roms/interpolate.o
 grid_coords.o: Build_roms/mod_floats.o Build_roms/mod_grid.o
 grid_coords.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 grid_coords.o: Build_roms/mod_scalars.o
 
-ini_adjust.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+ini_adjust.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 ini_adjust.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 ini_adjust.o: Build_roms/mod_boundary.o Build_roms/mod_coupling.o
 ini_adjust.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
@@ -2098,13 +2094,13 @@ ini_adjust.o: Build_roms/state_copy.o Build_roms/t3dbc_im.o
 ini_adjust.o: Build_roms/u2dbc_im.o Build_roms/u3dbc_im.o Build_roms/v2dbc_im.o
 ini_adjust.o: Build_roms/v3dbc_im.o Build_roms/zetabc.o
 
-ini_hmixcoef.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+ini_hmixcoef.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 ini_hmixcoef.o: Build_roms/exchange_2d.o Build_roms/mod_grid.o
 ini_hmixcoef.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
 ini_hmixcoef.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 ini_hmixcoef.o: Build_roms/mp_exchange.o
 
-ini_lanczos.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+ini_lanczos.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 ini_lanczos.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 ini_lanczos.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
 ini_lanczos.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -2115,7 +2111,7 @@ ini_lanczos.o: Build_roms/state_addition.o Build_roms/state_dotprod.o
 ini_lanczos.o: Build_roms/state_initialize.o Build_roms/state_read.o
 ini_lanczos.o: Build_roms/state_scale.o Build_roms/strings.o
 
-inner2state.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+inner2state.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 inner2state.o: Build_roms/distribute.o Build_roms/mod_boundary.o
 inner2state.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
 inner2state.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
@@ -2128,13 +2124,13 @@ inner2state.o: Build_roms/state_dotprod.o Build_roms/state_initialize.o
 inner2state.o: Build_roms/state_read.o Build_roms/state_scale.o
 inner2state.o: Build_roms/strings.o
 
-inp_decode.o: cppdefs.h globaldefs.h eccofs.h
+inp_decode.o: cppdefs.h globaldefs.h
 inp_decode.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 inp_decode.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 inp_decode.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 inp_decode.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-inp_par.o: cppdefs.h globaldefs.h eccofs.h
+inp_par.o: cppdefs.h globaldefs.h
 inp_par.o: Build_roms/dateclock.o Build_roms/distribute.o Build_roms/lbc.o
 inp_par.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 inp_par.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
@@ -2144,45 +2140,45 @@ inp_par.o: Build_roms/mod_strings.o Build_roms/ran_state.o
 inp_par.o: Build_roms/set_contact.o Build_roms/stdinp_mod.o
 inp_par.o: Build_roms/strings.o Build_roms/tadv.o Build_roms/tile_indices.o
 
-inquiry.o: cppdefs.h globaldefs.h eccofs.h
+inquiry.o: cppdefs.h globaldefs.h
 inquiry.o: Build_roms/get_cycle.o Build_roms/mod_iounits.o
 inquiry.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 inquiry.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 inquiry.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 inquiry.o: Build_roms/strings.o
 
-interpolate.o: cppdefs.h globaldefs.h eccofs.h
+interpolate.o: cppdefs.h globaldefs.h
 interpolate.o: Build_roms/distribute.o Build_roms/mod_grid.o
 interpolate.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 interpolate.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 interpolate.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-lanc_resid.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+lanc_resid.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 lanc_resid.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 lanc_resid.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 lanc_resid.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-lapack_mod.o: cppdefs.h globaldefs.h eccofs.h
+lapack_mod.o: cppdefs.h globaldefs.h
 lapack_mod.o: Build_roms/mod_kinds.o
 
-lbc.o: cppdefs.h globaldefs.h eccofs.h
+lbc.o: cppdefs.h globaldefs.h
 lbc.o: Build_roms/distribute.o Build_roms/mod_iounits.o
 lbc.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 lbc.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 lbc.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-lubksb.o: cppdefs.h globaldefs.h eccofs.h
+lubksb.o: cppdefs.h globaldefs.h
 lubksb.o: Build_roms/mod_kinds.o
 
-ludcmp.o: cppdefs.h globaldefs.h eccofs.h
+ludcmp.o: cppdefs.h globaldefs.h
 ludcmp.o: Build_roms/mod_kinds.o
 
-memory.o: cppdefs.h globaldefs.h eccofs.h
+memory.o: cppdefs.h globaldefs.h
 memory.o: Build_roms/distribute.o Build_roms/mod_iounits.o
 memory.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 memory.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-metrics.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+metrics.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 metrics.o: Build_roms/distribute.o Build_roms/exchange_2d.o
 metrics.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
 metrics.o: Build_roms/mod_iounits.o Build_roms/mod_mixing.o
@@ -2192,14 +2188,14 @@ metrics.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 metrics.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 metrics.o: Build_roms/set_depth.o
 
-mp_exchange.o: set_bounds_xtr.h set_bounds.h cppdefs.h globaldefs.h eccofs.h
+mp_exchange.o: set_bounds_xtr.h set_bounds.h cppdefs.h globaldefs.h
 mp_exchange.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 mp_exchange.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-mp_routines.o: cppdefs.h globaldefs.h eccofs.h
+mp_routines.o: cppdefs.h globaldefs.h
 mp_routines.o: Build_roms/mod_kinds.o
 
-nf_fread2d.o: cppdefs.h globaldefs.h eccofs.h
+nf_fread2d.o: cppdefs.h globaldefs.h
 nf_fread2d.o: Build_roms/distribute.o Build_roms/get_bounds.o
 nf_fread2d.o: Build_roms/get_hash.o Build_roms/mod_grid.o
 nf_fread2d.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -2207,14 +2203,14 @@ nf_fread2d.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 nf_fread2d.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 nf_fread2d.o: Build_roms/mod_scalars.o Build_roms/regrid.o Build_roms/strings.o
 
-nf_fread2d_bry.o: cppdefs.h globaldefs.h eccofs.h
+nf_fread2d_bry.o: cppdefs.h globaldefs.h
 nf_fread2d_bry.o: Build_roms/distribute.o Build_roms/get_hash.o
 nf_fread2d_bry.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 nf_fread2d_bry.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 nf_fread2d_bry.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 nf_fread2d_bry.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-nf_fread2d_xtr.o: cppdefs.h globaldefs.h eccofs.h
+nf_fread2d_xtr.o: cppdefs.h globaldefs.h
 nf_fread2d_xtr.o: Build_roms/distribute.o Build_roms/get_bounds.o
 nf_fread2d_xtr.o: Build_roms/get_hash.o Build_roms/mod_grid.o
 nf_fread2d_xtr.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -2223,7 +2219,7 @@ nf_fread2d_xtr.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 nf_fread2d_xtr.o: Build_roms/mod_scalars.o Build_roms/regrid.o
 nf_fread2d_xtr.o: Build_roms/strings.o
 
-nf_fread3d.o: cppdefs.h globaldefs.h eccofs.h
+nf_fread3d.o: cppdefs.h globaldefs.h
 nf_fread3d.o: Build_roms/distribute.o Build_roms/get_bounds.o
 nf_fread3d.o: Build_roms/get_hash.o Build_roms/mod_iounits.o
 nf_fread3d.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
@@ -2231,14 +2227,14 @@ nf_fread3d.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 nf_fread3d.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 nf_fread3d.o: Build_roms/strings.o
 
-nf_fread3d_bry.o: cppdefs.h globaldefs.h eccofs.h
+nf_fread3d_bry.o: cppdefs.h globaldefs.h
 nf_fread3d_bry.o: Build_roms/distribute.o Build_roms/get_hash.o
 nf_fread3d_bry.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 nf_fread3d_bry.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 nf_fread3d_bry.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 nf_fread3d_bry.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-nf_fread4d.o: cppdefs.h globaldefs.h eccofs.h
+nf_fread4d.o: cppdefs.h globaldefs.h
 nf_fread4d.o: Build_roms/distribute.o Build_roms/get_bounds.o
 nf_fread4d.o: Build_roms/get_hash.o Build_roms/mod_iounits.o
 nf_fread4d.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
@@ -2246,40 +2242,40 @@ nf_fread4d.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 nf_fread4d.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 nf_fread4d.o: Build_roms/strings.o
 
-nf_fwrite2d.o: cppdefs.h globaldefs.h eccofs.h
+nf_fwrite2d.o: cppdefs.h globaldefs.h
 nf_fwrite2d.o: Build_roms/distribute.o Build_roms/get_bounds.o
 nf_fwrite2d.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 nf_fwrite2d.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 nf_fwrite2d.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 nf_fwrite2d.o: Build_roms/pack_field.o Build_roms/stats.o
 
-nf_fwrite2d_bry.o: cppdefs.h globaldefs.h eccofs.h
+nf_fwrite2d_bry.o: cppdefs.h globaldefs.h
 nf_fwrite2d_bry.o: Build_roms/distribute.o Build_roms/mod_ncparam.o
 nf_fwrite2d_bry.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 nf_fwrite2d_bry.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 nf_fwrite2d_bry.o: Build_roms/mod_scalars.o Build_roms/pack_field.o
 
-nf_fwrite3d.o: cppdefs.h globaldefs.h eccofs.h
+nf_fwrite3d.o: cppdefs.h globaldefs.h
 nf_fwrite3d.o: Build_roms/distribute.o Build_roms/get_bounds.o
 nf_fwrite3d.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 nf_fwrite3d.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 nf_fwrite3d.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 nf_fwrite3d.o: Build_roms/pack_field.o Build_roms/stats.o
 
-nf_fwrite3d_bry.o: cppdefs.h globaldefs.h eccofs.h
+nf_fwrite3d_bry.o: cppdefs.h globaldefs.h
 nf_fwrite3d_bry.o: Build_roms/distribute.o Build_roms/mod_ncparam.o
 nf_fwrite3d_bry.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 nf_fwrite3d_bry.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 nf_fwrite3d_bry.o: Build_roms/mod_scalars.o Build_roms/pack_field.o
 
-nf_fwrite4d.o: cppdefs.h globaldefs.h eccofs.h
+nf_fwrite4d.o: cppdefs.h globaldefs.h
 nf_fwrite4d.o: Build_roms/distribute.o Build_roms/get_bounds.o
 nf_fwrite4d.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 nf_fwrite4d.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 nf_fwrite4d.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 nf_fwrite4d.o: Build_roms/pack_field.o Build_roms/stats.o
 
-normalization.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+normalization.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 normalization.o: Build_roms/bc_2d.o Build_roms/bc_3d.o Build_roms/bc_bry2d.o
 normalization.o: Build_roms/bc_bry3d.o Build_roms/distribute.o
 normalization.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
@@ -2296,37 +2292,37 @@ normalization.o: Build_roms/strings.o Build_roms/white_noise.o
 
 nrutil.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 
-ntimestep.o: cppdefs.h globaldefs.h eccofs.h
+ntimestep.o: cppdefs.h globaldefs.h
 ntimestep.o: Build_roms/mod_iounits.o Build_roms/mod_nesting.o
 ntimestep.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 ntimestep.o: Build_roms/mod_scalars.o
 
-obs_cost.o: cppdefs.h globaldefs.h eccofs.h
+obs_cost.o: cppdefs.h globaldefs.h
 obs_cost.o: Build_roms/mod_fourdvar.o Build_roms/mod_parallel.o
 obs_cost.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-obs_depth.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+obs_depth.o: set_bounds.h cppdefs.h globaldefs.h
 obs_depth.o: Build_roms/mod_fourdvar.o Build_roms/mod_ncparam.o
 obs_depth.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-obs_initial.o: cppdefs.h globaldefs.h eccofs.h
+obs_initial.o: cppdefs.h globaldefs.h
 obs_initial.o: Build_roms/mod_fourdvar.o Build_roms/mod_iounits.o
 obs_initial.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 obs_initial.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 obs_initial.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 obs_initial.o: Build_roms/strings.o
 
-obs_k2z.o: cppdefs.h globaldefs.h eccofs.h
+obs_k2z.o: cppdefs.h globaldefs.h
 obs_k2z.o: Build_roms/mod_kinds.o Build_roms/mod_param.o
 
-obs_read.o: cppdefs.h globaldefs.h eccofs.h
+obs_read.o: cppdefs.h globaldefs.h
 obs_read.o: Build_roms/dateclock.o Build_roms/mod_fourdvar.o
 obs_read.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 obs_read.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 obs_read.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 obs_read.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-obs_write.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+obs_write.o: set_bounds.h cppdefs.h globaldefs.h
 obs_write.o: Build_roms/distribute.o Build_roms/extract_obs.o
 obs_write.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
 obs_write.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -2336,11 +2332,11 @@ obs_write.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 obs_write.o: Build_roms/mod_stepping.o Build_roms/nf_fwrite2d.o
 obs_write.o: Build_roms/strings.o
 
-pack_field.o: cppdefs.h globaldefs.h eccofs.h
+pack_field.o: cppdefs.h globaldefs.h
 pack_field.o: Build_roms/distribute.o Build_roms/extract_field.o
 pack_field.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-packing.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+packing.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 packing.o: Build_roms/distribute.o Build_roms/exchange_2d.o
 packing.o: Build_roms/exchange_3d.o Build_roms/mod_forces.o
 packing.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
@@ -2351,7 +2347,7 @@ packing.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 packing.o: Build_roms/mod_storage.o Build_roms/mp_exchange.o
 packing.o: Build_roms/nf_fread2d.o Build_roms/nf_fread3d.o Build_roms/strings.o
 
-posterior.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+posterior.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 posterior.o: Build_roms/distribute.o Build_roms/lapack_mod.o
 posterior.o: Build_roms/mod_boundary.o Build_roms/mod_coupling.o
 posterior.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
@@ -2365,7 +2361,7 @@ posterior.o: Build_roms/state_dotprod.o Build_roms/state_initialize.o
 posterior.o: Build_roms/state_read.o Build_roms/state_scale.o
 posterior.o: Build_roms/strings.o Build_roms/wrt_hessian.o
 
-posterior_var.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+posterior_var.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 posterior_var.o: Build_roms/distribute.o Build_roms/mod_boundary.o
 posterior_var.o: Build_roms/mod_coupling.o Build_roms/mod_forces.o
 posterior_var.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
@@ -2376,12 +2372,12 @@ posterior_var.o: Build_roms/mod_stepping.o Build_roms/state_addition.o
 posterior_var.o: Build_roms/state_copy.o Build_roms/state_initialize.o
 posterior_var.o: Build_roms/state_product.o Build_roms/state_read.o
 
-ran1.o: cppdefs.h globaldefs.h eccofs.h
+ran1.o: cppdefs.h globaldefs.h
 ran1.o: Build_roms/mod_kinds.o Build_roms/ran_state.o
 
 ran_state.o: Build_roms/mod_kinds.o Build_roms/nrutil.o
 
-random_ic.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+random_ic.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 random_ic.o: Build_roms/distribute.o Build_roms/mod_boundary.o
 random_ic.o: Build_roms/mod_coupling.o Build_roms/mod_forces.o
 random_ic.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
@@ -2391,41 +2387,41 @@ random_ic.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 random_ic.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 random_ic.o: Build_roms/mp_exchange.o Build_roms/white_noise.o
 
-read_asspar.o: cppdefs.h globaldefs.h eccofs.h
+read_asspar.o: cppdefs.h globaldefs.h
 read_asspar.o: Build_roms/inp_decode.o Build_roms/mod_fourdvar.o
 read_asspar.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 read_asspar.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 read_asspar.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
 read_biopar.o: npzd_Powell_inp.h fennel_inp.h npzd_iron_inp.h red_tide_inp.h
-read_biopar.o: nemuro_inp.h cppdefs.h globaldefs.h eccofs.h hypoxia_srm_inp.h
+read_biopar.o: nemuro_inp.h cppdefs.h globaldefs.h hypoxia_srm_inp.h
 read_biopar.o: ecosim_inp.h npzd_Franks_inp.h
 read_biopar.o: Build_roms/inp_decode.o Build_roms/mod_biology.o
 read_biopar.o: Build_roms/mod_eclight.o Build_roms/mod_ncparam.o
 read_biopar.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 read_biopar.o: Build_roms/mod_scalars.o
 
-read_couplepar.o: cppdefs.h globaldefs.h eccofs.h
+read_couplepar.o: cppdefs.h globaldefs.h
 read_couplepar.o: Build_roms/distribute.o Build_roms/inp_decode.o
 read_couplepar.o: Build_roms/mod_coupler.o Build_roms/mod_iounits.o
 read_couplepar.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 read_couplepar.o: Build_roms/mod_scalars.o
 
-read_fltbiopar.o: oyster_floats_inp.h cppdefs.h globaldefs.h eccofs.h
+read_fltbiopar.o: oyster_floats_inp.h cppdefs.h globaldefs.h
 read_fltbiopar.o: Build_roms/inp_decode.o Build_roms/mod_behavior.o
 read_fltbiopar.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 read_fltbiopar.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 read_fltbiopar.o: Build_roms/mod_scalars.o
 
-read_fltpar.o: cppdefs.h globaldefs.h eccofs.h
+read_fltpar.o: cppdefs.h globaldefs.h
 read_fltpar.o: Build_roms/inp_decode.o Build_roms/mod_floats.o
 read_fltpar.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 read_fltpar.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 read_fltpar.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-read_icepar.o: cppdefs.h globaldefs.h eccofs.h
+read_icepar.o: cppdefs.h globaldefs.h
 
-read_phypar.o: cppdefs.h globaldefs.h eccofs.h
+read_phypar.o: cppdefs.h globaldefs.h
 read_phypar.o: Build_roms/dateclock.o Build_roms/inp_decode.o
 read_phypar.o: Build_roms/mod_biology.o Build_roms/mod_coupler.o
 read_phypar.o: Build_roms/mod_fourdvar.o Build_roms/mod_ice.o
@@ -2437,18 +2433,18 @@ read_phypar.o: Build_roms/mod_sediment.o Build_roms/mod_stepping.o
 read_phypar.o: Build_roms/mod_storage.o Build_roms/mod_strings.o
 read_phypar.o: Build_roms/set_pio.o Build_roms/strings.o
 
-read_sedpar.o: sediment_inp.h cppdefs.h globaldefs.h eccofs.h
+read_sedpar.o: sediment_inp.h cppdefs.h globaldefs.h
 read_sedpar.o: Build_roms/inp_decode.o Build_roms/mod_ncparam.o
 read_sedpar.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 read_sedpar.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 
-read_stapar.o: cppdefs.h globaldefs.h eccofs.h
+read_stapar.o: cppdefs.h globaldefs.h
 read_stapar.o: Build_roms/inp_decode.o Build_roms/mod_ice.o
 read_stapar.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 read_stapar.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 read_stapar.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 
-regrid.o: cppdefs.h globaldefs.h eccofs.h
+regrid.o: cppdefs.h globaldefs.h
 regrid.o: Build_roms/distribute.o Build_roms/get_varcoords.o
 regrid.o: Build_roms/interpolate.o Build_roms/mod_iounits.o
 regrid.o: Build_roms/mod_ncparam.o Build_roms/mod_parallel.o
@@ -2456,14 +2452,14 @@ regrid.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 regrid.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 regrid.o: Build_roms/shapiro.o Build_roms/strings.o
 
-rep_matrix.o: cppdefs.h globaldefs.h eccofs.h
+rep_matrix.o: cppdefs.h globaldefs.h
 rep_matrix.o: Build_roms/distribute.o Build_roms/mod_fourdvar.o
 rep_matrix.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 rep_matrix.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
 round.o: Build_roms/mod_kinds.o
 
-rpcg_lanczos.o: cppdefs.h globaldefs.h eccofs.h
+rpcg_lanczos.o: cppdefs.h globaldefs.h
 rpcg_lanczos.o: Build_roms/distribute.o Build_roms/lapack_mod.o
 rpcg_lanczos.o: Build_roms/mod_fourdvar.o Build_roms/mod_iounits.o
 rpcg_lanczos.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
@@ -2471,37 +2467,37 @@ rpcg_lanczos.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 rpcg_lanczos.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 rpcg_lanczos.o: Build_roms/strings.o
 
-set_2dfld.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+set_2dfld.o: set_bounds.h cppdefs.h globaldefs.h
 set_2dfld.o: Build_roms/exchange_2d.o Build_roms/mod_iounits.o
 set_2dfld.o: Build_roms/mod_ncparam.o Build_roms/mod_parallel.o
 set_2dfld.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 set_2dfld.o: Build_roms/mp_exchange.o
 
-set_2dfldr.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+set_2dfldr.o: set_bounds.h cppdefs.h globaldefs.h
 set_2dfldr.o: Build_roms/exchange_2d.o Build_roms/mod_iounits.o
 set_2dfldr.o: Build_roms/mod_ncparam.o Build_roms/mod_parallel.o
 set_2dfldr.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 set_2dfldr.o: Build_roms/mp_exchange.o
 
-set_3dfld.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+set_3dfld.o: set_bounds.h cppdefs.h globaldefs.h
 set_3dfld.o: Build_roms/dateclock.o Build_roms/exchange_3d.o
 set_3dfld.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 set_3dfld.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 set_3dfld.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 
-set_3dfldr.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+set_3dfldr.o: set_bounds.h cppdefs.h globaldefs.h
 set_3dfldr.o: Build_roms/dateclock.o Build_roms/exchange_3d.o
 set_3dfldr.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 set_3dfldr.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 set_3dfldr.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 
-set_contact.o: cppdefs.h globaldefs.h eccofs.h
+set_contact.o: cppdefs.h globaldefs.h
 set_contact.o: Build_roms/mod_iounits.o Build_roms/mod_nesting.o
 set_contact.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 set_contact.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 set_contact.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-set_diags.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+set_diags.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 set_diags.o: Build_roms/bc_2d.o Build_roms/bc_3d.o Build_roms/bc_4d.o
 set_diags.o: Build_roms/exchange_2d.o Build_roms/mod_biology.o
 set_diags.o: Build_roms/mod_diags.o Build_roms/mod_grid.o
@@ -2509,7 +2505,7 @@ set_diags.o: Build_roms/mod_ocean.o Build_roms/mod_param.o
 set_diags.o: Build_roms/mod_scalars.o Build_roms/mod_stepping.o
 set_diags.o: Build_roms/mp_exchange.o
 
-set_grid.o: cppdefs.h globaldefs.h eccofs.h
+set_grid.o: cppdefs.h globaldefs.h
 set_grid.o: Build_roms/analytical.o Build_roms/distribute.o
 set_grid.o: Build_roms/equilibrium_tide.o Build_roms/get_extract.o
 set_grid.o: Build_roms/get_grid.o Build_roms/get_nudgcoef.o
@@ -2517,60 +2513,60 @@ set_grid.o: Build_roms/metrics.o Build_roms/mod_nesting.o
 set_grid.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 set_grid.o: Build_roms/mod_scalars.o Build_roms/nesting.o Build_roms/strings.o
 
-set_masks.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+set_masks.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 set_masks.o: Build_roms/exchange_2d.o Build_roms/mod_grid.o
 set_masks.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 set_masks.o: Build_roms/mod_sources.o Build_roms/mp_exchange.o
 
-set_ngfld.o: cppdefs.h globaldefs.h eccofs.h
+set_ngfld.o: cppdefs.h globaldefs.h
 set_ngfld.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 set_ngfld.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 set_ngfld.o: Build_roms/mod_scalars.o
 
-set_ngfldr.o: cppdefs.h globaldefs.h eccofs.h
+set_ngfldr.o: cppdefs.h globaldefs.h
 set_ngfldr.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 set_ngfldr.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 set_ngfldr.o: Build_roms/mod_scalars.o
 
-set_pio.o: cppdefs.h globaldefs.h eccofs.h
+set_pio.o: cppdefs.h globaldefs.h
 set_pio.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 set_pio.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 set_pio.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_stepping.o
 set_pio.o: Build_roms/mod_storage.o Build_roms/strings.o
 
-set_scoord.o: cppdefs.h globaldefs.h eccofs.h
+set_scoord.o: cppdefs.h globaldefs.h
 set_scoord.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 set_scoord.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 set_scoord.o: Build_roms/mod_scalars.o
 
-set_weights.o: cppdefs.h globaldefs.h eccofs.h
+set_weights.o: cppdefs.h globaldefs.h
 set_weights.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 set_weights.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-shapiro.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+shapiro.o: set_bounds.h cppdefs.h globaldefs.h
 shapiro.o: Build_roms/mod_param.o
 
-sqlq.o: cppdefs.h globaldefs.h eccofs.h
+sqlq.o: cppdefs.h globaldefs.h
 sqlq.o: Build_roms/mod_kinds.o
 
-state_addition.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+state_addition.o: set_bounds.h cppdefs.h globaldefs.h
 state_addition.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 state_addition.o: Build_roms/mod_scalars.o
 
-state_copy.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+state_copy.o: set_bounds.h cppdefs.h globaldefs.h
 state_copy.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 state_copy.o: Build_roms/mod_scalars.o
 
-state_dotprod.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+state_dotprod.o: set_bounds.h cppdefs.h globaldefs.h
 state_dotprod.o: Build_roms/distribute.o Build_roms/mod_ncparam.o
 state_dotprod.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 state_dotprod.o: Build_roms/mod_scalars.o
 
-state_initialize.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+state_initialize.o: set_bounds.h cppdefs.h globaldefs.h
 state_initialize.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 state_initialize.o: Build_roms/mod_scalars.o
 
-state_join.o: cppdefs.h globaldefs.h eccofs.h
+state_join.o: cppdefs.h globaldefs.h
 state_join.o: Build_roms/dateclock.o Build_roms/mod_coupling.o
 state_join.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 state_join.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
@@ -2581,12 +2577,12 @@ state_join.o: Build_roms/nf_fread2d.o Build_roms/nf_fread3d.o
 state_join.o: Build_roms/nf_fwrite2d.o Build_roms/nf_fwrite3d.o
 state_join.o: Build_roms/strings.o
 
-state_product.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+state_product.o: set_bounds.h cppdefs.h globaldefs.h
 state_product.o: Build_roms/distribute.o Build_roms/mod_ncparam.o
 state_product.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 state_product.o: Build_roms/mod_scalars.o
 
-state_read.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+state_read.o: set_bounds.h cppdefs.h globaldefs.h
 state_read.o: Build_roms/dateclock.o Build_roms/distribute.o
 state_read.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 state_read.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
@@ -2595,16 +2591,16 @@ state_read.o: Build_roms/mod_scalars.o Build_roms/nf_fread2d.o
 state_read.o: Build_roms/nf_fread2d_bry.o Build_roms/nf_fread3d.o
 state_read.o: Build_roms/nf_fread3d_bry.o Build_roms/strings.o
 
-state_scale.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+state_scale.o: set_bounds.h cppdefs.h globaldefs.h
 state_scale.o: Build_roms/mod_ncparam.o Build_roms/mod_param.o
 state_scale.o: Build_roms/mod_scalars.o
 
-stats.o: cppdefs.h globaldefs.h eccofs.h
+stats.o: cppdefs.h globaldefs.h
 stats.o: Build_roms/distribute.o Build_roms/get_hash.o Build_roms/mod_iounits.o
 stats.o: Build_roms/mod_ncparam.o Build_roms/mod_parallel.o
 stats.o: Build_roms/mod_param.o
 
-stats_modobs.o: cppdefs.h globaldefs.h eccofs.h
+stats_modobs.o: cppdefs.h globaldefs.h
 stats_modobs.o: Build_roms/distribute.o Build_roms/mod_fourdvar.o
 stats_modobs.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 stats_modobs.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
@@ -2612,53 +2608,53 @@ stats_modobs.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 stats_modobs.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 stats_modobs.o: Build_roms/obs_k2z.o Build_roms/strings.o
 
-stdinp_mod.o: cppdefs.h globaldefs.h eccofs.h
+stdinp_mod.o: cppdefs.h globaldefs.h
 stdinp_mod.o: Build_roms/distribute.o Build_roms/inp_decode.o
 stdinp_mod.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 stdinp_mod.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-stdout_mod.o: cppdefs.h globaldefs.h eccofs.h
+stdout_mod.o: cppdefs.h globaldefs.h
 stdout_mod.o: Build_roms/mod_iounits.o Build_roms/mod_parallel.o
 stdout_mod.o: Build_roms/mod_scalars.o Build_roms/strings.o
 
-stiffness.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+stiffness.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 stiffness.o: Build_roms/distribute.o Build_roms/mod_grid.o
 stiffness.o: Build_roms/mod_iounits.o Build_roms/mod_ocean.o
 stiffness.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 stiffness.o: Build_roms/mod_scalars.o
 
-strings.o: cppdefs.h globaldefs.h eccofs.h
+strings.o: cppdefs.h globaldefs.h
 strings.o: Build_roms/distribute.o Build_roms/mod_iounits.o
 strings.o: Build_roms/mod_parallel.o
 
-sum_grad.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+sum_grad.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 sum_grad.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 sum_grad.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 sum_grad.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 
-sum_imp.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+sum_imp.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 sum_imp.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 sum_imp.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 sum_imp.o: Build_roms/mod_param.o
 
-tadv.o: cppdefs.h globaldefs.h eccofs.h
+tadv.o: cppdefs.h globaldefs.h
 tadv.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 tadv.o: Build_roms/mod_netcdf.o Build_roms/mod_parallel.o
 tadv.o: Build_roms/mod_param.o Build_roms/mod_scalars.o Build_roms/strings.o
 
-tides_date.o: cppdefs.h globaldefs.h eccofs.h
+tides_date.o: cppdefs.h globaldefs.h
 tides_date.o: Build_roms/dateclock.o Build_roms/mod_iounits.o
 tides_date.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 tides_date.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 tides_date.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 tides_date.o: Build_roms/strings.o
 
-tile_indices.o: cppdefs.h globaldefs.h eccofs.h
+tile_indices.o: cppdefs.h globaldefs.h
 tile_indices.o: Build_roms/get_bounds.o Build_roms/mod_ncparam.o
 tile_indices.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 tile_indices.o: Build_roms/mod_scalars.o
 
-time_corr.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+time_corr.o: set_bounds.h cppdefs.h globaldefs.h
 time_corr.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 time_corr.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 time_corr.o: Build_roms/mod_ocean.o Build_roms/mod_parallel.o
@@ -2667,37 +2663,37 @@ time_corr.o: Build_roms/mod_scalars.o Build_roms/nf_fread2d.o
 time_corr.o: Build_roms/nf_fread3d.o Build_roms/nf_fwrite2d.o
 time_corr.o: Build_roms/nf_fwrite3d.o Build_roms/strings.o
 
-timers.o: cppdefs.h globaldefs.h eccofs.h
+timers.o: cppdefs.h globaldefs.h
 timers.o: Build_roms/distribute.o Build_roms/mod_iounits.o
 timers.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 timers.o: Build_roms/mod_strings.o Build_roms/strings.o
 
-uv_rotate.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+uv_rotate.o: set_bounds.h cppdefs.h globaldefs.h
 uv_rotate.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 uv_rotate.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 uv_rotate.o: Build_roms/mp_exchange.o
 
-vorticity.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+vorticity.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 vorticity.o: Build_roms/exchange_2d.o Build_roms/exchange_3d.o
 vorticity.o: Build_roms/mod_average.o Build_roms/mod_grid.o
 vorticity.o: Build_roms/mod_ncparam.o Build_roms/mod_ocean.o
 vorticity.o: Build_roms/mod_param.o Build_roms/mod_scalars.o
 vorticity.o: Build_roms/mod_stepping.o Build_roms/mp_exchange.o
 
-white_noise.o: cppdefs.h globaldefs.h eccofs.h
+white_noise.o: cppdefs.h globaldefs.h
 white_noise.o: Build_roms/distribute.o Build_roms/mod_kinds.o
 white_noise.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 white_noise.o: Build_roms/mod_scalars.o Build_roms/mp_exchange.o
 white_noise.o: Build_roms/nrutil.o
 
-wpoints.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+wpoints.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 wpoints.o: Build_roms/distribute.o Build_roms/mod_grid.o
 wpoints.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
 wpoints.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 wpoints.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 wpoints.o: Build_roms/mod_storage.o Build_roms/set_pio.o
 
-wrt_aug_imp.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+wrt_aug_imp.o: set_bounds.h cppdefs.h globaldefs.h
 wrt_aug_imp.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 wrt_aug_imp.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 wrt_aug_imp.o: Build_roms/mod_ocean.o Build_roms/mod_parallel.o
@@ -2705,7 +2701,7 @@ wrt_aug_imp.o: Build_roms/mod_param.o Build_roms/mod_pio_netcdf.o
 wrt_aug_imp.o: Build_roms/mod_scalars.o Build_roms/nf_fwrite2d.o
 wrt_aug_imp.o: Build_roms/nf_fwrite3d.o Build_roms/strings.o
 
-wrt_avg.o: cppdefs.h globaldefs.h eccofs.h
+wrt_avg.o: cppdefs.h globaldefs.h
 wrt_avg.o: Build_roms/bbl_output.o Build_roms/mod_average.o
 wrt_avg.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
 wrt_avg.o: Build_roms/mod_iounits.o Build_roms/mod_ncparam.o
@@ -2716,7 +2712,7 @@ wrt_avg.o: Build_roms/mod_sediment.o Build_roms/mod_tides.o
 wrt_avg.o: Build_roms/nf_fwrite2d.o Build_roms/nf_fwrite3d.o
 wrt_avg.o: Build_roms/sediment_output.o Build_roms/strings.o
 
-wrt_dai.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+wrt_dai.o: set_bounds.h cppdefs.h globaldefs.h
 wrt_dai.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 wrt_dai.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
 wrt_dai.o: Build_roms/mod_netcdf.o Build_roms/mod_ocean.o
@@ -2725,7 +2721,7 @@ wrt_dai.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 wrt_dai.o: Build_roms/mod_stepping.o Build_roms/nf_fwrite2d.o
 wrt_dai.o: Build_roms/nf_fwrite3d.o Build_roms/strings.o
 
-wrt_diags.o: cppdefs.h globaldefs.h eccofs.h
+wrt_diags.o: cppdefs.h globaldefs.h
 wrt_diags.o: Build_roms/mod_biology.o Build_roms/mod_diags.o
 wrt_diags.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 wrt_diags.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
@@ -2734,7 +2730,7 @@ wrt_diags.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 wrt_diags.o: Build_roms/nf_fwrite2d.o Build_roms/nf_fwrite3d.o
 wrt_diags.o: Build_roms/nf_fwrite4d.o Build_roms/strings.o
 
-wrt_error.o: cppdefs.h globaldefs.h eccofs.h
+wrt_error.o: cppdefs.h globaldefs.h
 wrt_error.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 wrt_error.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
 wrt_error.o: Build_roms/mod_iounits.o Build_roms/mod_mixing.o
@@ -2746,7 +2742,7 @@ wrt_error.o: Build_roms/nf_fwrite2d.o Build_roms/nf_fwrite2d_bry.o
 wrt_error.o: Build_roms/nf_fwrite3d.o Build_roms/nf_fwrite3d_bry.o
 wrt_error.o: Build_roms/strings.o
 
-wrt_evolved.o: cppdefs.h globaldefs.h eccofs.h
+wrt_evolved.o: cppdefs.h globaldefs.h
 wrt_evolved.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 wrt_evolved.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 wrt_evolved.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
@@ -2757,7 +2753,7 @@ wrt_evolved.o: Build_roms/mod_stepping.o Build_roms/nf_fwrite2d.o
 wrt_evolved.o: Build_roms/nf_fwrite2d_bry.o Build_roms/nf_fwrite3d.o
 wrt_evolved.o: Build_roms/nf_fwrite3d_bry.o Build_roms/strings.o
 
-wrt_extract.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+wrt_extract.o: set_bounds.h cppdefs.h globaldefs.h
 wrt_extract.o: Build_roms/bbl_output.o Build_roms/extract_field.o
 wrt_extract.o: Build_roms/mod_bbl.o Build_roms/mod_boundary.o
 wrt_extract.o: Build_roms/mod_coupling.o Build_roms/mod_extract.o
@@ -2773,21 +2769,21 @@ wrt_extract.o: Build_roms/nf_fwrite3d.o Build_roms/nf_fwrite3d_bry.o
 wrt_extract.o: Build_roms/omega.o Build_roms/sediment_output.o
 wrt_extract.o: Build_roms/strings.o Build_roms/uv_rotate.o
 
-wrt_floats.o: cppdefs.h globaldefs.h eccofs.h
+wrt_floats.o: cppdefs.h globaldefs.h
 wrt_floats.o: Build_roms/mod_floats.o Build_roms/mod_iounits.o
 wrt_floats.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 wrt_floats.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 wrt_floats.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 wrt_floats.o: Build_roms/mod_stepping.o Build_roms/strings.o
 
-wrt_gst.o: cppdefs.h globaldefs.h eccofs.h
+wrt_gst.o: cppdefs.h globaldefs.h
 wrt_gst.o: Build_roms/distribute.o Build_roms/mod_iounits.o
 wrt_gst.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 wrt_gst.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
 wrt_gst.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 wrt_gst.o: Build_roms/mod_storage.o Build_roms/strings.o
 
-wrt_hessian.o: cppdefs.h globaldefs.h eccofs.h
+wrt_hessian.o: cppdefs.h globaldefs.h
 wrt_hessian.o: Build_roms/mod_boundary.o Build_roms/mod_forces.o
 wrt_hessian.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 wrt_hessian.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
@@ -2798,7 +2794,7 @@ wrt_hessian.o: Build_roms/mod_stepping.o Build_roms/nf_fwrite2d.o
 wrt_hessian.o: Build_roms/nf_fwrite2d_bry.o Build_roms/nf_fwrite3d.o
 wrt_hessian.o: Build_roms/nf_fwrite3d_bry.o Build_roms/strings.o
 
-wrt_his.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+wrt_his.o: set_bounds.h cppdefs.h globaldefs.h
 wrt_his.o: Build_roms/bbl_output.o Build_roms/mod_bbl.o
 wrt_his.o: Build_roms/mod_boundary.o Build_roms/mod_coupling.o
 wrt_his.o: Build_roms/mod_forces.o Build_roms/mod_grid.o
@@ -2813,7 +2809,7 @@ wrt_his.o: Build_roms/nf_fwrite3d.o Build_roms/nf_fwrite3d_bry.o
 wrt_his.o: Build_roms/omega.o Build_roms/sediment_output.o Build_roms/strings.o
 wrt_his.o: Build_roms/uv_rotate.o
 
-wrt_impulse.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+wrt_impulse.o: set_bounds.h cppdefs.h globaldefs.h
 wrt_impulse.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 wrt_impulse.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 wrt_impulse.o: Build_roms/mod_ocean.o Build_roms/mod_parallel.o
@@ -2826,7 +2822,7 @@ wrt_info.o: sediment_wrt.h oyster_floats_wrt_pio.h npzd_Powell_wrt.h
 wrt_info.o: fennel_wrt.h red_tide_wrt.h npzd_iron_wrt.h hypoxia_srm_wrt_pio.h
 wrt_info.o: oyster_floats_wrt.h npzd_Franks_wrt.h sediment_wrt_pio.h
 wrt_info.o: fennel_wrt_pio.h npzd_Franks_wrt_pio.h nemuro_wrt_pio.h cppdefs.h
-wrt_info.o: globaldefs.h eccofs.h ecosim_wrt.h npzd_iron_wrt_pio.h nemuro_wrt.h
+wrt_info.o: globaldefs.h ecosim_wrt.h npzd_iron_wrt_pio.h nemuro_wrt.h
 wrt_info.o: npzd_Powell_wrt_pio.h hypoxia_srm_wrt.h red_tide_wrt_pio.h
 wrt_info.o: ecosim_wrt_pio.h
 wrt_info.o: Build_roms/distribute.o Build_roms/extract_sta.o
@@ -2840,7 +2836,7 @@ wrt_info.o: Build_roms/mod_scalars.o Build_roms/mod_sediment.o
 wrt_info.o: Build_roms/mod_sources.o Build_roms/mod_storage.o
 wrt_info.o: Build_roms/nf_fwrite2d.o Build_roms/strings.o
 
-wrt_ini.o: cppdefs.h globaldefs.h eccofs.h
+wrt_ini.o: cppdefs.h globaldefs.h
 wrt_ini.o: Build_roms/dateclock.o Build_roms/mod_boundary.o
 wrt_ini.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
 wrt_ini.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
@@ -2853,7 +2849,7 @@ wrt_ini.o: Build_roms/nf_fwrite2d.o Build_roms/nf_fwrite2d_bry.o
 wrt_ini.o: Build_roms/nf_fwrite3d.o Build_roms/nf_fwrite3d_bry.o
 wrt_ini.o: Build_roms/strings.o
 
-wrt_quick.o: set_bounds.h cppdefs.h globaldefs.h eccofs.h
+wrt_quick.o: set_bounds.h cppdefs.h globaldefs.h
 wrt_quick.o: Build_roms/bbl_output.o Build_roms/mod_bbl.o
 wrt_quick.o: Build_roms/mod_coupling.o Build_roms/mod_forces.o
 wrt_quick.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
@@ -2867,7 +2863,7 @@ wrt_quick.o: Build_roms/nf_fwrite3d.o Build_roms/omega.o
 wrt_quick.o: Build_roms/sediment_output.o Build_roms/strings.o
 wrt_quick.o: Build_roms/uv_rotate.o
 
-wrt_rst.o: cppdefs.h globaldefs.h eccofs.h
+wrt_rst.o: cppdefs.h globaldefs.h
 wrt_rst.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 wrt_rst.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
 wrt_rst.o: Build_roms/mod_netcdf.o Build_roms/mod_ocean.o
@@ -2878,7 +2874,7 @@ wrt_rst.o: Build_roms/mod_stepping.o Build_roms/nf_fwrite2d.o
 wrt_rst.o: Build_roms/nf_fwrite3d.o Build_roms/nf_fwrite4d.o
 wrt_rst.o: Build_roms/strings.o
 
-wrt_state.o: cppdefs.h globaldefs.h eccofs.h
+wrt_state.o: cppdefs.h globaldefs.h
 wrt_state.o: Build_roms/dateclock.o Build_roms/mod_boundary.o
 wrt_state.o: Build_roms/mod_coupling.o Build_roms/mod_forces.o
 wrt_state.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
@@ -2890,7 +2886,7 @@ wrt_state.o: Build_roms/mod_stepping.o Build_roms/nf_fwrite2d.o
 wrt_state.o: Build_roms/nf_fwrite2d_bry.o Build_roms/nf_fwrite3d.o
 wrt_state.o: Build_roms/nf_fwrite3d_bry.o Build_roms/strings.o
 
-wrt_station.o: cppdefs.h globaldefs.h eccofs.h
+wrt_station.o: cppdefs.h globaldefs.h
 wrt_station.o: Build_roms/bbl_output.o Build_roms/extract_sta.o
 wrt_station.o: Build_roms/mod_bbl.o Build_roms/mod_forces.o
 wrt_station.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
@@ -2902,7 +2898,7 @@ wrt_station.o: Build_roms/mod_sedbed.o Build_roms/mod_sediment.o
 wrt_station.o: Build_roms/mod_stepping.o Build_roms/sediment_output.o
 wrt_station.o: Build_roms/strings.o Build_roms/uv_rotate.o
 
-wrt_std.o: cppdefs.h globaldefs.h eccofs.h
+wrt_std.o: cppdefs.h globaldefs.h
 wrt_std.o: Build_roms/mod_forces.o Build_roms/mod_fourdvar.o
 wrt_std.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 wrt_std.o: Build_roms/mod_mixing.o Build_roms/mod_ncparam.o
@@ -2912,7 +2908,7 @@ wrt_std.o: Build_roms/mod_pio_netcdf.o Build_roms/mod_scalars.o
 wrt_std.o: Build_roms/mod_stepping.o Build_roms/nf_fwrite2d.o
 wrt_std.o: Build_roms/nf_fwrite3d.o Build_roms/strings.o
 
-wrt_tides.o: cppdefs.h globaldefs.h eccofs.h
+wrt_tides.o: cppdefs.h globaldefs.h
 wrt_tides.o: Build_roms/mod_grid.o Build_roms/mod_iounits.o
 wrt_tides.o: Build_roms/mod_ncparam.o Build_roms/mod_netcdf.o
 wrt_tides.o: Build_roms/mod_parallel.o Build_roms/mod_param.o
@@ -2924,7 +2920,7 @@ wrt_tides.o: Build_roms/strings.o
 yaml_parser.o: Build_roms/mod_iounits.o Build_roms/mod_kinds.o
 yaml_parser.o: Build_roms/mod_parallel.o Build_roms/mod_scalars.o
 
-zeta_balance.o: set_bounds.h tile.h cppdefs.h globaldefs.h eccofs.h
+zeta_balance.o: set_bounds.h tile.h cppdefs.h globaldefs.h
 zeta_balance.o: Build_roms/distribute.o Build_roms/exchange_2d.o
 zeta_balance.o: Build_roms/exchange_3d.o Build_roms/mod_coupling.o
 zeta_balance.o: Build_roms/mod_fourdvar.o Build_roms/mod_grid.o
