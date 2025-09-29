@@ -59,8 +59,9 @@ clean=1
 dprint=0
 branch=0
 
-# command="build_roms.sh $@"
-# separator=`perl -e "print '<>' x 50;"`
+command="build_roms.sh $@"
+
+separator=`perl -e "print '<>' x 50;"`
 
 export MY_CPP_FLAGS=
 
@@ -140,15 +141,13 @@ export   ROMS_APPLICATION=ECCOFS
 # script describing the location from where the ROMS source code was cloned
 # or downloaded, it uses that value.
 
-export        MY_ROOT_DIR=${HOMEnos}/sorc
+if [ -n "${ROMS_ROOT_DIR:+1}" ]; then
+  export      MY_ROOT_DIR=${ROMS_ROOT_DIR}
+else
+  export      MY_ROOT_DIR=${HOME}/ocean/repository/git
+fi
 
-#if [ -n "${ROMS_ROOT_DIR:+1}" ]; then
-#  export      MY_ROOT_DIR=${ROMS_ROOT_DIR}
-#else
-#  export      MY_ROOT_DIR=${HOME}/ocean/repository/git
-#fi
-
-# export     MY_PROJECT_DIR=${PWD}
+export     MY_PROJECT_DIR=${PWD}
 
 # The path to the user's local current ROMS source code.
 #
@@ -160,11 +159,10 @@ export        MY_ROOT_DIR=${HOMEnos}/sorc
 # This script allows for differing paths to the code and inputs on other
 # computers.
 
- #export       MY_ROMS_SRC=${MY_ROOT_DIR}/roms
- export       MY_ROMS_SRC=${MY_ROOT_DIR}/ROMS.eccofs
- export       MY_PROJECT_DIR=${MY_ROMS_SRC}
-
-
+# export       MY_ROMS_SRC=${MY_ROOT_DIR}/roms
+export        MY_ROOT_DIR=${HOMEnos}/sorc
+export       MY_ROMS_SRC=${MY_ROOT_DIR}/ROMS.eccofs
+export       MY_PROJECT_DIR=${MY_ROMS_SRC}
 # Set path of the directory containing makefile configuration (*.mk) files.
 # The user has the option to specify a customized version of these files
 # in a different directory than the one distributed with the source code,
@@ -208,13 +206,11 @@ export        MY_ROOT_DIR=${HOMEnos}/sorc
 #export         which_MPI=mpich         # compile with MPICH library
 #export         which_MPI=mpich2        # compile with MPICH2 library
 #export         which_MPI=mvapich2      # compile with MVAPICH2 library
-#export         which_MPI=openmpi       # compile with OpenMPI library
+# export         which_MPI=openmpi       # compile with OpenMPI library
 
 #export        USE_OpenMP=on            # shared-memory parallelism
 
-# This determines which Compiler file to use
- export              FORT=ifort-intel
-# export              FORT=ifort
+ export              FORT=ifort
 #export              FORT=gfortran
 #export              FORT=pgi
 
@@ -279,25 +275,14 @@ fi
 # customized biology model header file (like fennel.h, nemuro.h, ecosim.h,
 # etc).
 
-# export     MY_HEADER_DIR=${MY_PROJECT_DIR}
- export     MY_HEADER_DIR=${MY_ROMS_SRC}/ROMS/Include
-
+# export     MY_HEADER_DIR=${MY_PROJECT_DIR}/ROMS/Include
+ export     MY_HEADER_DIR=${HOMEnos}/include 
  export MY_ANALYTICAL_DIR=${MY_PROJECT_DIR}
 
 # Put the binary to execute in the following directory.
 
-# export            BINDIR=${MY_PROJECT_DIR}
- export            BINDIR=${MY_ROMS_SRC}
+ export            BINDIR=${MY_PROJECT_DIR}
  export            BIN=${BINDIR}/${ROMS_APPLICATION,,}_roms_mpi
-
-if [ -n "${USE_DEBUG:+1}" ]; then
- export       SCRATCH_DIR=${MY_PROJECT_DIR}/Build_romsG
-else
- export       SCRATCH_DIR=${MY_PROJECT_DIR}/Build_roms
-fi
-
- cd ${MY_ROMS_SRC}
-
  echo ""
  echo "${separator}"
 
@@ -312,22 +297,16 @@ fi
 # Put the f90 files in a project specific Build directory to avoid conflict
 # with other projects.
 
-#if [ -n "${USE_DEBUG:+1}" ]; then
-# export         BUILD_DIR=${MY_PROJECT_DIR}/Build_romsG
-#else
-#  if [ -n "${USE_OpenMP:+1}" ]; then
-#    export      BUILD_DIR=${MY_PROJECT_DIR}/Build_romsO
-#  elif [ -n "${USE_MPI:+1}" ]; then
-#    export      BUILD_DIR=${MY_PROJECT_DIR}/Build_romsM
-#  else
-#    export      BUILD_DIR=${MY_PROJECT_DIR}/Build_roms
-#  fi
-#fi
-
 if [ -n "${USE_DEBUG:+1}" ]; then
- export       SCRATCH_DIR=${MY_PROJECT_DIR}/Build_romsG
+ export         BUILD_DIR=${MY_PROJECT_DIR}/Build_romsG
 else
- export       SCRATCH_DIR=${MY_PROJECT_DIR}/Build_roms
+  if [ -n "${USE_OpenMP:+1}" ]; then
+    export      BUILD_DIR=${MY_PROJECT_DIR}/Build_romsO
+  elif [ -n "${USE_MPI:+1}" ]; then
+    export      BUILD_DIR=${MY_PROJECT_DIR}/Build_romsM
+  else
+    export      BUILD_DIR=${MY_PROJECT_DIR}/Build_roms
+  fi
 fi
 
 # For backward compatibility, set deprecated SCRATCH_DIR to compile
@@ -388,7 +367,7 @@ if [ $clean -eq 1 ]; then
   echo ""
   echo "Cleaning ROMS build directory: ${BUILD_DIR}"
   echo ""
-  make -f clean
+  make clean
 fi
 
 # Compile (the binary will go to BINDIR set above).

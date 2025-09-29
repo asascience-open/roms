@@ -42,7 +42,7 @@
        FIXEDFLAGS := -nofree
         FREEFLAGS := -free
               CPP := /usr/bin/cpp
-         CPPFLAGS := -P -traditional-cpp -w          # -w turns off warnings
+         CPPFLAGS := -P -traditional -w          # -w turns off warnings
            INCDIR := /usr/include /usr/local/bin
             SLIBS := -L/usr/local/lib -L/usr/lib
             ULIBS :=
@@ -52,7 +52,7 @@
                LD := $(FC)
           LDFLAGS :=
                AR := ar
-          ARFLAGS := r
+          ARFLAGS := -r
             MKDIR := mkdir -p
                CP := cp -p -v
                RM := rm -f
@@ -61,6 +61,10 @@
              TEST := test
       ST_LIB_NAME := libROMS.a
       SH_LIB_NAME := libROMS.so
+
+ifdef NO_AVX512
+           FFLAGS += -march=core-avx2
+endif
 
 #--------------------------------------------------------------------------
 # Compiling flags for ROMS Applications.
@@ -184,6 +188,7 @@ ifdef USE_SCORPIO
 endif
 
 ifdef USE_NETCDF4
+
         NC_CONFIG ?= nc-config
    TEST_NC_CONFIG := $(shell which $(NC_CONFIG))
   ifneq ($(TEST_NC_CONFIG),)
@@ -193,6 +198,7 @@ ifdef USE_NETCDF4
     NETCDF_INCDIR ?= $(shell $(NF_CONFIG) --prefix)/include
              LIBS += $(shell $(NF_CONFIG) --flibs)
            INCDIR += $(NETCDF_INCDIR) $(INCDIR)
+
 else
     NETCDF_INCDIR ?= /opt/intelsoft/serial/netcdf3/include
     NETCDF_LIBDIR ?= /opt/intelsoft/serial/netcdf3/lib

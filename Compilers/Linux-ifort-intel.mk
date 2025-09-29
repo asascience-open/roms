@@ -1,11 +1,11 @@
-# svn $Id: Linux-ftn-intel.mk 1120 2022-04-08 19:14:36Z arango $
+# git $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2022 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2024 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
-#   See License_ROMS.txt                                                :::
+#   See License_ROMS.md                                                 :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 #
-# Include file for CRAY ftn compiler with PrgEnv-intel
+# Include file for Intel IFORT compiler on Linux
 # -------------------------------------------------------------------------
 #
 # ARPACK_LIBDIR  ARPACK libary directory
@@ -36,19 +36,18 @@
 #
 # First the defaults
 #
-               FC := mpif90
-# might need this        # FFLAGS := -march=core-avx2 -fp-model precise
-           FFLAGS :=  -fp-model precise
+               FC := ifort
+           FFLAGS := -fp-model precise
            FFLAGS += -heap-arrays
        FIXEDFLAGS := -nofree
         FREEFLAGS := -free
               CPP := /usr/bin/cpp
-         CPPFLAGS := -P -traditional -w
+         CPPFLAGS := -P -traditional -w          # -w turns off warnings
            INCDIR := /usr/include /usr/local/bin
             SLIBS := -L/usr/local/lib -L/usr/lib
             ULIBS :=
              LIBS :=
-         ROMS_LIB := -L$(SCRATCH_DIR) -lROMS
+         ROMS_LIB := -L$(BUILD_DIR) -lROMS
        MOD_SUFFIX := mod
                LD := $(FC)
           LDFLAGS :=
@@ -63,6 +62,10 @@
       ST_LIB_NAME := libROMS.a
       SH_LIB_NAME := libROMS.so
 
+ifdef NO_AVX512
+           FFLAGS += -march=core-avx2
+endif
+
 #--------------------------------------------------------------------------
 # Compiling flags for ROMS Applications.
 #--------------------------------------------------------------------------
@@ -70,23 +73,25 @@
 ifdef USE_ROMS
  ifdef USE_DEBUG
            FFLAGS += -g
-           FFLAGS += -check all,noarg_temp_created
+           FFLAGS += -check all
+           FFLAGS += -check bounds
            FFLAGS += -traceback
+           FFLAGS += -check uninit
            FFLAGS += -warn interfaces,nouncalled
            FFLAGS += -gen-interfaces
  else
            FFLAGS += -ip -O3
            FFLAGS += -traceback
            FFLAGS += -check uninit
-#           FFLAGS += -ip -O3 -ftz -fast-transcendentals -no-prec-div 
-endif
+ endif
  ifdef SHARED
-          LDFLAGS += -Wl,-rpath,$(SCRATCH_DIR)
+          LDFLAGS += -Wl,-rpath,$(BUILD_DIR)
+
            FFLAGS += -fPIC
        SH_LDFLAGS += -shared
  endif
 
-        MDEPFLAGS := --cpp --fext=f90 --file=- --objdir=$(SCRATCH_DIR)
+        MDEPFLAGS := --cpp --fext=f90 --file=- --objdir=$(BUILD_DIR)
 endif
 
 #--------------------------------------------------------------------------
@@ -159,51 +164,50 @@ endif
 
 
 ifdef USE_PIO
-       PIO_INCDIR ?= /opt/cray/pe/pio/default/intel/16.0/include
-       PIO_LIBDIR ?= /opt/cray/pe/pio/default/intel/16.0/lib
+       PIO_INCDIR ?= /opt/intelsoft/openmpi/pio/include
+       PIO_LIBDIR ?= /opt/intelsoft/openmpi/pio/lib
            FFLAGS += -I$(PIO_INCDIR)
              LIBS += -L$(PIO_LIBDIR) -lpiof -lpioc
 
-   PNETCDF_INCDIR ?= /opt/cray/pe/pnetcdf/default/intel/16.0/include
-   PNETCDF_LIBDIR ?= /opt/cray/pe/pnetcdf/default/intel/16.0/lib
+   PNETCDF_INCDIR ?= /opt/intelsoft/openmpi/pnetcdf/include
+   PNETCDF_LIBDIR ?= /opt/intelsoft/openmpi/pnetcdf/lib
            FFLAGS += -I$(PNETCDF_INCDIR)
              LIBS += -L$(PNETCDF_LIBDIR) -lpnetcdf
 endif
 
 ifdef USE_SCORPIO
-       PIO_INCDIR ?= /opt/cray/pe/scorpio/default/intel/16.0/include
-       PIO_LIBDIR ?= /opt/cray/pe/scorpio/default/intel/16.0/lib
+       PIO_INCDIR ?= /opt/intelsoft/openmpi/scorpio/include
+       PIO_LIBDIR ?= /opt/intelsoft/openmpi/scorpio/lib
            FFLAGS += -I$(PIO_INCDIR)
              LIBS += -L$(PIO_LIBDIR) -lpiof -lpioc
 
-   PNETCDF_INCDIR ?= /opt/cray/pe/pnetcdf/default/intel/16.0/include
-   PNETCDF_LIBDIR ?= /opt/cray/pe/pnetcdf/default/intel/16.0/lib
+   PNETCDF_INCDIR ?= /opt/intelsoft/openmpi/pnetcdf/include
+   PNETCDF_LIBDIR ?= /opt/intelsoft/openmpi/pnetcdf/lib
            FFLAGS += -I$(PNETCDF_INCDIR)
              LIBS += -L$(PNETCDF_LIBDIR) -lpnetcdf
 endif
 
 ifdef USE_NETCDF4
         NC_CONFIG ?= nc-config
-  NETCDF_C_INCDIR ?= $(shell $(NC_CONFIG) --prefix)/include
+   TEST_NC_CONFIG := $(shell which $(NC_CONFIG))
+  ifneq ($(TEST_NC_CONFIG),)
              LIBS += $(shell $(NC_CONFIG) --libs)
-           INCDIR += $(NETCDF_C_INCDIR) $(INCDIR)
-
+  endif
         NF_CONFIG ?= nf-config
     NETCDF_INCDIR ?= $(shell $(NF_CONFIG) --prefix)/include
              LIBS += $(shell $(NF_CONFIG) --flibs)
            INCDIR += $(NETCDF_INCDIR) $(INCDIR)
-
 else
-    NETCDF_INCDIR ?= /opt/cray/pe/netcdf/default/intel/16.0/include
-    NETCDF_LIBDIR ?= /opt/cray/pe/netcdf/default/intel/16.0/lib
+    NETCDF_INCDIR ?= /opt/intelsoft/serial/netcdf3/include
+    NETCDF_LIBDIR ?= /opt/intelsoft/serial/netcdf3/lib
       NETCDF_LIBS ?= -lnetcdf
              LIBS += -L$(NETCDF_LIBDIR) $(NETCDF_LIBS)
            INCDIR += $(NETCDF_INCDIR) $(INCDIR)
 endif
 
 ifdef USE_HDF5
-      HDF5_INCDIR ?= /opt/cray/hdf5/default/intel/16.0/include
-      HDF5_LIBDIR ?= /opt/cray/hdf5/default/intel/16.0/lib
+      HDF5_INCDIR ?= /opt/intelsoft/serial/hdf5/include
+      HDF5_LIBDIR ?= /opt/intelsoft/serial/hdf5/lib
         HDF5_LIBS ?= -lhdf5_fortran -lhdf5hl_fortran -lhdf5 -lz
              LIBS += -L$(HDF5_LIBDIR) $(HDF5_LIBS)
            INCDIR += $(HDF5_INCDIR)
@@ -211,10 +215,10 @@ endif
 
 ifdef USE_ARPACK
  ifdef USE_MPI
-   PARPACK_LIBDIR ?= ${MY_ROMS_SRC}/Lib/ARPACK/
+   PARPACK_LIBDIR ?= /opt/intelsoft/PARPACK
              LIBS += -L$(PARPACK_LIBDIR) -lparpack
  endif
-    ARPACK_LIBDIR ?= ${MY_ROMS_SRC}/Lib/ARPACK/
+    ARPACK_LIBDIR ?= /opt/intelsoft/ARPACK
              LIBS += -L$(ARPACK_LIBDIR) -larpack
 endif
 
@@ -233,13 +237,13 @@ endif
 
 ifdef USE_OpenMP
          CPPFLAGS += -D_OPENMP
-           FFLAGS += -openmp -fpp
+           FFLAGS += -qopenmp -fpp
              LIBS += -liomp5
 endif
 
 ifdef USE_MCT
-       MCT_INCDIR ?= /usr/local/mct/include
-       MCT_LIBDIR ?= /usr/local/mct/lib
+       MCT_INCDIR ?= /opt/intelsoft/mct/include
+       MCT_LIBDIR ?= /opt/intelsoft/mct/lib
            FFLAGS += -I$(MCT_INCDIR)
              LIBS += -L$(MCT_LIBDIR) -lmct -lmpeu
            INCDIR += $(MCT_INCDIR) $(INCDIR)
@@ -257,7 +261,7 @@ endif
 
 # Use full path of compiler.
 
-               FC := $(shell which ${FC})  -fc=ifort
+               FC := $(shell which ${FC})
                LD := $(FC)
 
 #--------------------------------------------------------------------------
@@ -268,19 +272,19 @@ endif
 # local directory and compilation flags inside the code.
 
 ifdef USE_ROMS
- $(SCRATCH_DIR)/mod_ncparam.o: FFLAGS += $(FREEFLAGS)
- $(SCRATCH_DIR)/mod_strings.o: FFLAGS += $(FREEFLAGS)
- $(SCRATCH_DIR)/analytical.o: FFLAGS += $(FREEFLAGS)
- $(SCRATCH_DIR)/biology.o: FFLAGS += $(FREEFLAGS)
+ $(BUILD_DIR)/mod_ncparam.o: FFLAGS += $(FREEFLAGS)
+ $(BUILD_DIR)/mod_strings.o: FFLAGS += $(FREEFLAGS)
+ $(BUILD_DIR)/analytical.o: FFLAGS += $(FREEFLAGS)
+ $(BUILD_DIR)/biology.o: FFLAGS += $(FREEFLAGS)
 
  ifdef USE_ADJOINT
-  $(SCRATCH_DIR)/ad_biology.o: FFLAGS += $(FREEFLAGS)
+  $(BUILD_DIR)/ad_biology.o: FFLAGS += $(FREEFLAGS)
  endif
  ifdef USE_REPRESENTER
-  $(SCRATCH_DIR)/rp_biology.o: FFLAGS += $(FREEFLAGS)
+  $(BUILD_DIR)/rp_biology.o: FFLAGS += $(FREEFLAGS)
  endif
  ifdef USE_TANGENT
-  $(SCRATCH_DIR)/tl_biology.o: FFLAGS += $(FREEFLAGS)
+  $(BUILD_DIR)/tl_biology.o: FFLAGS += $(FREEFLAGS)
  endif
 endif
 
@@ -291,43 +295,39 @@ endif
 # Add COAMPS library directory to include path of ESMF coupling files.
 
 ifdef USE_COAMPS
- $(SCRATCH_DIR)/esmf_atm.o: FFLAGS += -I$(COAMPS_LIB_DIR)
- $(SCRATCH_DIR)/esmf_esm.o: FFLAGS += -I$(COAMPS_LIB_DIR)
+ $(BUILD_DIR)/esmf_atm.o: FFLAGS += -I$(COAMPS_LIB_DIR)
+ $(BUILD_DIR)/esmf_esm.o: FFLAGS += -I$(COAMPS_LIB_DIR)
 endif
 
 # Add WRF library directory to include path of ESMF coupling files.
 
 ifdef USE_WRF
- ifeq "$(strip $(WRF_LIB_DIR))" "$(WRF_SRC_DIR)"
-  $(SCRATCH_DIR)/esmf_atm.o: FFLAGS += $(addprefix -I$(WRF_LIB_DIR)/,$(WRF_MOD_DIRS))
- else
-  $(SCRATCH_DIR)/esmf_atm.o: FFLAGS += -I$(WRF_LIB_DIR)
- endif
+ $(BUILD_DIR)/esmf_atm.o: FFLAGS += -I$(WRF_LIB_DIR)
 endif
 
 # Supress free format in SWAN source files since there are comments
 # beyond column 72.
 
 ifdef USE_SWAN
- $(SCRATCH_DIR)/ocpcre.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/ocpids.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/ocpmix.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swancom1.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swancom2.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swancom3.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swancom4.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swancom5.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swanmain.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swanout1.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swanout2.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swanparll.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swanpre1.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swanpre2.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swanser.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swmod1.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/swmod2.o: FFLAGS += $(FIXEDFLAGS)
- $(SCRATCH_DIR)/m_constants.o: FFLAGS += $(FREEFLAGS)
- $(SCRATCH_DIR)/m_fileio.o: FFLAGS += $(FREEFLAGS)
- $(SCRATCH_DIR)/mod_xnl4v5.o: FFLAGS += $(FREEFLAGS)
- $(SCRATCH_DIR)/serv_xnl4v5.o: FFLAGS += $(FREEFLAGS)
+ $(BUILD_DIR)/ocpcre.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/ocpids.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/ocpmix.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swancom1.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swancom2.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swancom3.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swancom4.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swancom5.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swanmain.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swanout1.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swanout2.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swanparll.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swanpre1.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swanpre2.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swanser.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swmod1.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/swmod2.o: FFLAGS += $(FIXEDFLAGS)
+ $(BUILD_DIR)/m_constants.o: FFLAGS += $(FREEFLAGS)
+ $(BUILD_DIR)/m_fileio.o: FFLAGS += $(FREEFLAGS)
+ $(BUILD_DIR)/mod_xnl4v5.o: FFLAGS += $(FREEFLAGS)
+ $(BUILD_DIR)/serv_xnl4v5.o: FFLAGS += $(FREEFLAGS)
 endif

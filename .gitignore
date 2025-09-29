@@ -2,4 +2,4 @@
 **/*.a
 **/*.mod
 **/*.f90
-**/Build_roms
+**/Build_roms*
