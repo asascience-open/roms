@@ -1,11 +1,12 @@
 # git $Id$
+# svn $Id: Linux-ftn-intel.mk 1202 2023-10-24 15:36:07Z arango $
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2024 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2023 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.md                                                 :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 #
-# Include file for Intel IFORT compiler on Linux
+# Include file for CRAY ftn compiler with PrgEnv-intel
 # -------------------------------------------------------------------------
 #
 # ARPACK_LIBDIR  ARPACK libary directory
@@ -36,13 +37,19 @@
 #
 # First the defaults
 #
-               FC := ifort
+#              Use mpi wrappers
+#                  mpiifort --help # wrapper
+#                  mpif90 -fc=mpiifort --help
+#                  mpif90 -fc=ifort --help
+#                  mpiifort --version
+#               FC := mpif90
+               FC := mpiifort
            FFLAGS := -fp-model precise
            FFLAGS += -heap-arrays
        FIXEDFLAGS := -nofree
         FREEFLAGS := -free
               CPP := /usr/bin/cpp
-         CPPFLAGS := -P -traditional -w          # -w turns off warnings
+         CPPFLAGS := -P -traditional -w
            INCDIR := /usr/include /usr/local/bin
             SLIBS := -L/usr/local/lib -L/usr/lib
             ULIBS :=
@@ -73,7 +80,7 @@ endif
 ifdef USE_ROMS
  ifdef USE_DEBUG
            FFLAGS += -g
-           FFLAGS += -check all
+           FFLAGS += -check all,noarg_temp_created
            FFLAGS += -check bounds
            FFLAGS += -traceback
            FFLAGS += -check uninit
@@ -101,18 +108,21 @@ endif
 ifdef CICE_APPLICATION
           CPPDEFS := -DLINUS $(MY_CPP_FLAGS)
  ifdef USE_DEBUG
-           FFLAGS := -g
+           FFLAGS += -g
 #          FFLAGS += -O2
 #          FFLAGS += -r8 -i4 -align all -w
+           FFLAGS += -check all
            FFLAGS += -check bounds
            FFLAGS += -traceback
            FFLAGS += -check uninit
            FFLAGS += -ftz -convert big_endian -assume byterecl
            FFLAGS += -warn interfaces,nouncalled
            FFLAGS += -gen-interfaces
+
  else
-           FFLAGS := -r8 -i4 -O2 -align all -w
-           FFLAGS += -ftz -convert big_endian -assume byterecl
+           FFLAGS += -ip -O3
+           FFLAGS += -traceback
+           FFLAGS += -check uninit
  endif
 endif
 
@@ -162,7 +172,6 @@ endif
 # Library locations, can be overridden by environment variables.
 #--------------------------------------------------------------------------
 
-
 ifdef USE_PIO
        PIO_INCDIR ?= /opt/intelsoft/openmpi/pio/include
        PIO_LIBDIR ?= /opt/intelsoft/openmpi/pio/lib
@@ -188,6 +197,7 @@ ifdef USE_SCORPIO
 endif
 
 ifdef USE_NETCDF4
+
         NC_CONFIG ?= nc-config
    TEST_NC_CONFIG := $(shell which $(NC_CONFIG))
   ifneq ($(TEST_NC_CONFIG),)
@@ -197,6 +207,7 @@ ifdef USE_NETCDF4
     NETCDF_INCDIR ?= $(shell $(NF_CONFIG) --prefix)/include
              LIBS += $(shell $(NF_CONFIG) --flibs)
            INCDIR += $(NETCDF_INCDIR) $(INCDIR)
+
 else
     NETCDF_INCDIR ?= /opt/intelsoft/serial/netcdf3/include
     NETCDF_LIBDIR ?= /opt/intelsoft/serial/netcdf3/lib
@@ -215,13 +226,14 @@ endif
 
 ifdef USE_ARPACK
  ifdef USE_MPI
-   PARPACK_LIBDIR ?= /opt/intelsoft/PARPACK
+   PARPACK_LIBDIR ?= /usr/local/lib
              LIBS += -L$(PARPACK_LIBDIR) -lparpack
  endif
-    ARPACK_LIBDIR ?= /opt/intelsoft/ARPACK
+    ARPACK_LIBDIR ?= /usr/local/lib
              LIBS += -L$(ARPACK_LIBDIR) -larpack
 endif
 
+# PT the below is the newer version, might be better to use the one that works for nosofs
 ifdef USE_MPI
          CPPFLAGS += -DMPI
  ifdef USE_MPIF90
@@ -235,15 +247,16 @@ ifdef USE_MPI
  endif
 endif
 
+
 ifdef USE_OpenMP
          CPPFLAGS += -D_OPENMP
-           FFLAGS += -qopenmp -fpp
-             LIBS += -liomp5
+           FFLAGS += -openmp -fpp
+#             LIBS += -liomp5
 endif
 
 ifdef USE_MCT
-       MCT_INCDIR ?= /opt/intelsoft/mct/include
-       MCT_LIBDIR ?= /opt/intelsoft/mct/lib
+       MCT_INCDIR ?= /usr/local/mct/include
+       MCT_LIBDIR ?= /usr/local/mct/lib
            FFLAGS += -I$(MCT_INCDIR)
              LIBS += -L$(MCT_LIBDIR) -lmct -lmpeu
            INCDIR += $(MCT_INCDIR) $(INCDIR)
@@ -256,12 +269,12 @@ ifdef USE_ESMF
       ESMF_MK_DIR ?= $(ESMF_DIR)/lib/lib$(ESMF_BOPT)/$(ESMF_SUBDIR)
            FFLAGS += $(ESMF_F90COMPILEPATHS)
              LIBS += $(ESMF_F90LINKPATHS) $(ESMF_F90ESMFLINKLIBS)
-             LIBS += -liomp5 -lstdc++
 endif
 
 # Use full path of compiler.
 
                FC := $(shell which ${FC})
+#               FC := $(shell which ${FC})  -fc=ifort
                LD := $(FC)
 
 #--------------------------------------------------------------------------

@@ -1,8 +1,8 @@
 # ROMS I/O NetCDF Metadata Dictionary
 #
-#svn $Id: varinfo.yaml 1198 2023-09-01 19:00:59Z arango $
+#git $Id$
 #========================================================= Hernan G. Arango ==#
-#  Copyright (c) 2002-2023 The ROMS/TOMS Group                                #
+#  Copyright (c) 2002-2024 The ROMS/TOMS Group                                #
 #    Licensed under a MIT/X style license                                     #
 #    See License_ROMS.md                                                      #
 #=============================================================================#
@@ -40,7 +40,7 @@
 #     field = field (source_units) * scale + add_offset
 #
 
-svn_repository: $URL: https://www.myroms.org/svn/src/trunk/ROMS/External/varinfo.yaml $
+svn_repository: $URL: https://github.com/myroms/roms/External/varinfo.yaml $
 
 convention:     CF 1.10
 
@@ -621,6 +621,17 @@ metadata:
     time:           nulvar
     index_code:     idYgrV
     type:           v2dvar
+    add_offset:     0.0d0
+    scale:          1.0d0
+
+  - variable:       Hz                                               # Output
+    standard_name:  model_level_thickness_at_cell_center
+    long_name:      level thickness of RHO-points
+    units:          meter                                            # [m]
+    field:          Hz
+    time:           ocean_time
+    index_code:     idHzdz
+    type:           r3dvar
     add_offset:     0.0d0
     scale:          1.0d0
 
@@ -1295,7 +1306,7 @@ metadata:
     long_name:      free-surface western boundary condition
     units:          meter                                            # [m]
     field:          free-surface western-boundary
-    time:           bry_time
+    time:           zeta_time
     index_code:     idZbry(iwest)
     type:           nulvar
     add_offset:     0.0d0
@@ -1306,7 +1317,7 @@ metadata:
     long_name:      free-surface eastern boundary condition
     units:          meter                                            # [m]
     field:          free-surface eastern-boundary
-    time:           bry_time
+    time:           zeta_time
     index_code:     idZbry(ieast)
     type:           nulvar
     add_offset:     0.0d0
@@ -1317,7 +1328,7 @@ metadata:
     long_name:      free-surface southern boundary condition
     units:          meter                                            # [m]
     field:          free-surface southern-boundary
-    time:           bry_time
+    time:           zeta_time
     index_code:     idZbry(isouth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1328,7 +1339,7 @@ metadata:
     long_name:      free-surface northern boundary condition
     units:          meter                                            # [m]
     field:          free-surface northern-boundary
-    time:           bry_time
+    time:           zeta_time
     index_code:     idZbry(inorth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1339,7 +1350,7 @@ metadata:
     long_name:      2D u-momentum western boundary condition
     units:          meter second-1                                   # [m/s]
     field:          u-barotropic western-boundary
-    time:           bry_time
+    time:           v2d_time
     index_code:     idU2bc(iwest)
     type:           nulvar
     add_offset:     0.0d0
@@ -1350,7 +1361,7 @@ metadata:
     long_name:      2D u-momentum eastern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          u-barotropic eastern-boundary
-    time:           bry_time
+    time:           v2d_time
     index_code:     idU2bc(ieast)
     type:           nulvar
     add_offset:     0.0d0
@@ -1361,7 +1372,7 @@ metadata:
     long_name:      2D u-momentum southern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          u-barotropic southern-boundary
-    time:           bry_time
+    time:           v2d_time
     index_code:     idU2bc(isouth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1372,7 +1383,7 @@ metadata:
     long_name:      2D u-momentum northern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          u-barotropic northern-boundary
-    time:           bry_time
+    time:           v2d_time
     index_code:     idU2bc(inorth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1383,7 +1394,7 @@ metadata:
     long_name:      2D v-momentum western boundary condition
     units:          meter second-1                                   # [m/s]
     field:          v-barotropic western-boundary
-    time:           bry_time
+    time:           v2d_time
     index_code:     idV2bc(iwest)
     type:           nulvar
     add_offset:     0.0d0
@@ -1394,7 +1405,7 @@ metadata:
     long_name:      2D v-momentum eastern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          v-barotropic eastern-boundary
-    time:           bry_time
+    time:           v2d_time
     index_code:     idV2bc(ieast)
     type:           nulvar
     add_offset:     0.0d0
@@ -1405,7 +1416,7 @@ metadata:
     long_name:      2D v-momentum southern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          v-barotropic southern-boundary
-    time:           bry_time
+    time:           v2d_time
     index_code:     idV2bc(isouth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1416,7 +1427,7 @@ metadata:
     long_name:      2D v-momentum northern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          v-barotropic northern-boundary
-    time:           bry_time
+    time:           v2d_time
     index_code:     idV2bc(inorth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1427,7 +1438,7 @@ metadata:
     long_name:      3D u-momentum western boundary condition
     units:          meter second-1                                   # [m/s]
     field:          u-velocity western-boundary
-    time:           bry_time
+    time:           v3d_time
     index_code:     idU3bc(iwest)
     type:           nulvar
     add_offset:     0.0d0
@@ -1438,7 +1449,7 @@ metadata:
     long_name:      3D u-momentum eastern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          u-velocity eastern-boundary
-    time:           bry_time
+    time:           v3d_time
     index_code:     idU3bc(ieast)
     type:           nulvar
     add_offset:     0.0d0
@@ -1449,7 +1460,7 @@ metadata:
     long_name:      3D u-momentum southern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          u-velocity southern-boundary
-    time:           bry_time
+    time:           v3d_time
     index_code:     idU3bc(isouth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1460,7 +1471,7 @@ metadata:
     long_name:      3D u-momentum northern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          u-velocity northern-boundary
-    time:           bry_time
+    time:           v3d_time
     index_code:     idU3bc(inorth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1471,7 +1482,7 @@ metadata:
     long_name:      3D v-momentum western boundary condition
     units:          meter second-1                                   # [m/s]
     field:          v-velocity western-boundary
-    time:           bry_time
+    time:           v3d_time
     index_code:     idV3bc(iwest)
     type:           nulvar
     add_offset:     0.0d0
@@ -1482,7 +1493,7 @@ metadata:
     long_name:      3D v-momentum eastern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          v-velocity eastern-boundary
-    time:           bry_time
+    time:           v3d_time
     index_code:     idV3bc(ieast)
     type:           nulvar
     add_offset:     0.0d0
@@ -1493,7 +1504,7 @@ metadata:
     long_name:      3D v-momentum southern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          v-velocity southern-boundary
-    time:           bry_time
+    time:           v3d_time
     index_code:     idV3bc(isouth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1504,7 +1515,7 @@ metadata:
     long_name:      3D v-momentum northern boundary condition
     units:          meter second-1                                   # [m/s]
     field:          v-velocity northern-boundary
-    time:           bry_time
+    time:           v3d_time
     index_code:     idV3bc(inorth)
     type:           nulvar
     add_offset:     0.0d0
@@ -1515,7 +1526,7 @@ metadata:
     long_name:      temperature western boundary condition
     units:          Celsius                                          # [Celsius]
     field:          temperature western-boundary
-    time:           bry_time
+    time:           temp_time
     index_code:     idTbry(iwest,itemp)
     type:           nulvar
     add_offset:     0.0d0
@@ -1526,7 +1537,7 @@ metadata:
     long_name:      temperature eastern boundary condition
     units:          Celsius                                          # [Celsius]
     field:          temperature eastern-boundary
-    time:           bry_time
+    time:           temp_time
     index_code:     idTbry(ieast,itemp)
     type:           nulvar
     add_offset:     0.0d0
@@ -1537,7 +1548,7 @@ metadata:
     long_name:      temperature southern boundary condition
     units:          Celsius                                          # [Celsius]
     field:          temperature southern-boundary
-    time:           bry_time
+    time:           temp_time
     index_code:     idTbry(isouth,itemp)
     type:           nulvar
     add_offset:     0.0d0
@@ -1548,7 +1559,7 @@ metadata:
     long_name:      temperature northern boundary condition
     units:          Celsius                                          # [Celsius]
     field:          temperature northern-boundary
-    time:           bry_time
+    time:           temp_time
     index_code:     idTbry(inorth,itemp)
     type:           nulvar
     add_offset:     0.0d0
@@ -1559,7 +1570,7 @@ metadata:
     long_name:      salinity western boundary condition
     units:          nondimensional                                   # [PSS]
     field:          salinity western-boundary
-    time:           bry_time
+    time:           salt_time
     index_code:     idTbry(iwest,isalt)
     type:           nulvar
     add_offset:     0.0d0
@@ -1570,7 +1581,7 @@ metadata:
     long_name:      salinity eastern boundary condition
     units:          nondimensional                                   # [PSS]
     field:          salinity eastern-boundary
-    time:           bry_time
+    time:           salt_time
     index_code:     idTbry(ieast,isalt)
     type:           nulvar
     add_offset:     0.0d0
@@ -1581,7 +1592,7 @@ metadata:
     long_name:      salinity southern boundary condition
     units:          nondimensional                                   # [PSS]
     field:          salinity southern-boundary
-    time:           bry_time
+    time:           salt_time
     index_code:     idTbry(isouth,isalt)
     type:           nulvar
     add_offset:     0.0d0
@@ -1592,7 +1603,7 @@ metadata:
     long_name:      salinity northern boundary condition
     units:          nondimensional                                   # [PSS]
     field:          salinity northern-boundary
-    time:           bry_time
+    time:           salt_time
     index_code:     idTbry(inorth,isalt)
     type:           nulvar
     add_offset:     0.0d0
@@ -1607,7 +1618,7 @@ metadata:
     long_name:      surface air pressure
     units:          millibar                                         # [millibar]
     field:          surface air pressure
-    time:           time
+    time:           pair_time
     index_code:     idPair
     type:           r2dvar
     add_offset:     0.0d0
@@ -1618,7 +1629,7 @@ metadata:
     long_name:      surface air temperature
     units:          Celsius                                          # [Kelvin]
     field:          surface air temperature
-    time:           time
+    time:           tair_time
     index_code:     idTair
     type:           r2dvar
     add_offset:     0.0d0
@@ -1629,7 +1640,7 @@ metadata:
     long_name:      surface air relative humidity                    #  relative    or  specific
     units:          percentage                                       # [percentage  or  g/kg    ]
     field:          surface relative humidity
-    time:           time
+    time:           qair_time
     index_code:     idQair
     type:           r2dvar                                           # relative        specific
     add_offset:     0.0d0
@@ -1640,7 +1651,7 @@ metadata:
     long_name:      cloud fraction
     units:          nondimensional                                   # [nondimensional]
     field:          cloud fraction
-    time:           time
+    time:           cloud_time
     index_code:     idCfra
     type:           r2dvar
     add_offset:     0.0d0
@@ -1651,7 +1662,7 @@ metadata:
     long_name:      net solar shortwave radiation flux
     units:          watt meter-2                                     # Input:  [Watt/m2]
     field:          shortwave radiation                              # [Celsius m/s]
-    time:           time                                         # Output: [Watt/m2]
+    time:           srf_time                                         # Output: [Watt/m2]
     index_code:     idSrad
     type:           r2dvar
     add_offset:     0.0d0
@@ -1662,7 +1673,7 @@ metadata:
     long_name:      downward longwave radiation flux
     units:          watt meter-2                                     # Input:  [Watt/m2]
     field:          downwelling longwave radiation                   # [Celsius m/s]
-    time:           time
+    time:           lrf_time
     index_code:     idLdwn
     type:           r2dvar
     add_offset:     0.0d0
@@ -1673,7 +1684,7 @@ metadata:
     long_name:      net longwave radiation flux
     units:          watt meter-2                                     # Input:  [Watt/m2]
     field:          longwave radiation                               # [Celsius m/s]
-    time:           time                                         # Output: [Watt/m2]
+    time:           lrf_time                                         # Output: [Watt/m2]
     index_code:     idLrad
     type:           r2dvar
     add_offset:     0.0d0
@@ -1684,7 +1695,7 @@ metadata:
     long_name:      net latent heat flux
     units:          watt meter-2                                     # [Celsius m/s]
     field:          latent heat flux                                 # Output: [Watt/m2]
-    time:           time
+    time:           lhf_time
     index_code:     idLhea
     type:           r2dvar
     add_offset:     0.0d0
@@ -1695,7 +1706,7 @@ metadata:
     long_name:      net sensible heat flux
     units:          watt meter-2                                     # [Celsius m/s]
     field:          sensible heat flux                               # Output: [Watt/m2]
-    time:           time
+    time:           shf_time
     index_code:     idShea
     type:           r2dvar
     add_offset:     0.0d0
@@ -1706,7 +1717,7 @@ metadata:
     long_name:      rain fall rate
     units:          kilogram meter-2 second-1                        # [kg m2/s]
     field:          rain fall
-    time:           time
+    time:           rain_time
     index_code:     idrain
     type:           r2dvar
     add_offset:     0.0d0
@@ -1717,7 +1728,7 @@ metadata:
     long_name:      evaporation rate
     units:          kilogram meter-2 second-1                        # [kg m2/s]
     field:          evaporation flux
-    time:           time
+    time:           evap_time
     index_code:     idevap
     type:           r2dvar
     add_offset:     0.0d0
@@ -1728,7 +1739,7 @@ metadata:
     long_name:      surface u-wind component
     units:          meter second-1                                   # [m/s]
     field:          u-wind
-    time:           time
+    time:           wind_time
     index_code:     idUair
     type:           r2dvar
     add_offset:     0.0d0
@@ -1739,7 +1750,7 @@ metadata:
     long_name:      surface v-wind component
     units:          meter second-1                                   # [m/s]
     field:          v-wind
-    time:           time
+    time:           wind_time
     index_code:     idVair
     type:           r2dvar
     add_offset:     0.0d0
@@ -1750,7 +1761,7 @@ metadata:
     long_name:      surface eastward wind
     units:          meter second-1                                   # [m/s]
     field:          surface eastward wind
-    time:           time
+    time:           wind_time
     index_code:     idUaiE
     type:           r2dvar
     add_offset:     0.0d0
@@ -1761,7 +1772,7 @@ metadata:
     long_name:      surface northward wind
     units:          meter second-1                                   # [m/s]
     field:          surface northward wind
-    time:           time
+    time:           wind_time
     index_code:     idVaiN
     type:           r2dvar
     add_offset:     0.0d0
@@ -2588,7 +2599,7 @@ metadata:
     long_name:      sea surface height climatology
     units:          meter                                            # [m]
     field:          free-surface
-    time:           ocean_time
+    time:           zeta_time
     index_code:     idSSHc
     type:           r2dvar
     add_offset:     0.0d0
@@ -2599,7 +2610,7 @@ metadata:
     long_name:      vertically integrated u-momentum climatology
     units:          meter second-1                                   # [m/s]
     field:          u-barotropic
-    time:           ocean_time
+    time:           v2d_time
     index_code:     idUbcl
     type:           u2dvar
     add_offset:     0.0d0
@@ -2610,7 +2621,7 @@ metadata:
     long_name:      vertically integrated v-momentum climatology
     units:          meter second-1                                   # [m/s]
     field:          v-barotropic
-    time:           ocean_time
+    time:           v2d_time
     index_code:     idVbcl
     type:           v2dvar
     add_offset:     0.0d0
@@ -2621,7 +2632,7 @@ metadata:
     long_name:      u-momentum component climatology
     units:          meter second-1                                   # [m/s]
     field:          u-velocity
-    time:           ocean_time
+    time:           v3d_time
     index_code:     idUclm
     type:           u3dvar
     add_offset:     0.0d0
@@ -2632,7 +2643,7 @@ metadata:
     long_name:      v-momentum component climatology
     units:          meter second-1                                   # [m/s]
     field:          v-velocity
-    time:           ocean_time
+    time:           v3d_time
     index_code:     idVclm
     type:           v3dvar
     add_offset:     0.0d0
@@ -5972,6 +5983,28 @@ metadata:
     add_offset:     0.0d0
     scale:          1.0d0
 
+  - variable:       Uice_eastward                                    # Input/Output
+    standard_name:  eastward_sea_ice_velocity
+    long_name:      eastward sea ice velocity at RHO-points
+    units:          meter second-1                                   # [m/s]
+    field:          sea ice x-velocity
+    time:           ocean_time
+    index_code:     idUiER
+    type:           r2dvar
+    add_offset:     0.0d0
+    scale:          1.0d0
+
+  - variable:       Vice_northward                                   # Input/Output
+    standard_name:  northward_sea_ice_velocity
+    long_name:      northward sea ice velocity at RHO-points
+    units:          meter second-1                                   # [m/s]
+    field:          sea ice y-velocity
+    time:           ocean_time
+    index_code:     idViNR
+    type:           r2dvar
+    add_offset:     0.0d0
+    scale:          1.0d0
+
   - variable:       ice_Sxx                                          # Input/Output
     standard_name:  sea_ice_internal_xx_stress
     long_name:      internal ice stress xx-component
@@ -6067,6 +6100,17 @@ metadata:
     field:          air-ocean melt/freeze rate
     time:           ocean_time
     index_code:     idW_ao
+    type:           r2dvar
+    add_offset:     0.0d0
+    scale:          1.0d0
+
+  - variable:       frazil_freeze                                    # Output
+    standard_name:  rate_of_frazil_ice_growth
+    long_name:      rate of frazil ice growth in full water column
+    units:          meter second-1                                   # [m/s]
+    field:          frazil ice growth rate
+    time:           ocean_time
+    index_code:     idW_fr
     type:           r2dvar
     add_offset:     0.0d0
     scale:          1.0d0

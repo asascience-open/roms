@@ -210,7 +210,7 @@ export       MY_PROJECT_DIR=${MY_ROMS_SRC}
 
 #export        USE_OpenMP=on            # shared-memory parallelism
 
- export              FORT=ifort
+ export              FORT=ifort-intel
 #export              FORT=gfortran
 #export              FORT=pgi
 
@@ -227,7 +227,6 @@ export       MY_PROJECT_DIR=${MY_ROMS_SRC}
 
 #export            SHARED=on            # build libROMS.{so|dylib}
  export            STATIC=on            # build libROMS.a
-
  export              EXEC=on            # build roms{G|M|O|S} executable
 
 # ROMS I/O choices and combinations. A more complete description of the
