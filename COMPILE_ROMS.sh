@@ -27,6 +27,12 @@ export SORCnos=$HOMEnos/sorc
 export EXECnos=$HOMEnos/exec
 export LIBnos=$HOMEnos/lib
 
+if [[ $(nproc) -eq 1 || $(nproc) -eq 2 ]]; then
+    JOBS=1
+else
+    JOBS=$(($(nproc) - 1))
+fi
+
 models='eccofs'
 
 for model in $models
@@ -40,7 +46,7 @@ do
   else
     cd $SORCnos/ROMS.fd
   fi
-  ./build_${model}.sh
+  ./build_${model}.sh -j $JOBS
   if [ -s ${model}_roms_mpi ]; then
     mv ${model}_roms_mpi $EXECnos/.
   else
