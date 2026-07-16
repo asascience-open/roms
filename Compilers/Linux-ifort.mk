@@ -62,6 +62,10 @@
       ST_LIB_NAME := libROMS.a
       SH_LIB_NAME := libROMS.so
 
+ifdef NO_AVX512
+           FFLAGS += -march=core-avx2
+endif
+
 #--------------------------------------------------------------------------
 # Compiling flags for ROMS Applications.
 #--------------------------------------------------------------------------
@@ -89,6 +93,7 @@ ifdef USE_ROMS
 
         MDEPFLAGS := --cpp --fext=f90 --file=- --objdir=$(BUILD_DIR)
 endif
+
 
 #--------------------------------------------------------------------------
 # Compiling flags for CICE Applications.
